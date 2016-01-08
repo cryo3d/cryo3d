@@ -1,3 +1,7 @@
+machine:
+  timezone:
+    America/Denver
+
 deployment:
   staging:
     branch: master
