@@ -4,7 +4,8 @@ machine:
 
 deployment:
   staging:
-    branch: master
+    branch: circle_ci
       commands:
+        - docker build -t some-content-nginx .
         - docker tag some-content-nginx cryo3d/cryo3d
         - docker push cryo3d/cryo3d
