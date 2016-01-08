@@ -8,9 +8,7 @@ deployment:
   staging:
     branch: circle_ci
     commands:
-      #- sudo ln -s /etc/apparmor.d/docker /etc/apparmor.d/force-complain/
-      #- docker login -e annie.kelly -u $DOCKER_USER -p $DOCKER_PASS
-      - docker login
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker build -t some-content-nginx .
       - docker tag some-content-nginx cryo3d/cryo3d
       - docker push cryo3d/cryo3d
