@@ -3,12 +3,6 @@ machine:
     America/Denver
   services:
     - docker
-  pre:
-    - sudo curl -L -o /usr/bin/docker 'http://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci' 
-    - sudo chmod 0755 /usr/bin/docker
-    - sudo sed -i -e 's/ --userland-proxy=false//' /etc/default/docker
-    - sudo sed -i -e 's/exec "$DOCKER" daemon $DOCKER_OPTS/exec "$DOCKER" --daemon $DOCKER_OPTS/' /etc/init/docker.conf
-    - sudo apt-get install apparmor-utils
 
 deployment:
   staging:
@@ -16,6 +10,7 @@ deployment:
     commands:
       #- sudo ln -s /etc/apparmor.d/docker /etc/apparmor.d/force-complain/
       #- docker login -e annie.kelly -u $DOCKER_USER -p $DOCKER_PASS
+      - docker login
       - docker build -t some-content-nginx .
       - docker tag some-content-nginx cryo3d/cryo3d
       - docker push cryo3d/cryo3d
