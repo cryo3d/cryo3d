@@ -6,8 +6,8 @@ deployment:
   staging:
     branch: circle_ci
     commands:
-      - eval "$(docker-machine env default)"
-      - sudo docker -d
+      - aa-complain /etc/apparmor.d/docker
+      - sudo docker daemon
       - docker build -t some-content-nginx .
       - docker tag some-content-nginx cryo3d/cryo3d
       - docker push cryo3d/cryo3d
