@@ -6,8 +6,7 @@ deployment:
   staging:
     branch: circle_ci
     commands:
-      - docker -v
-      - sudo docker daemon
+      - sudo docker -d
       - docker build -t some-content-nginx .
       - docker tag some-content-nginx cryo3d/cryo3d
       - docker push cryo3d/cryo3d
