@@ -4,6 +4,10 @@ machine:
   services:
     - docker
 
+test:
+  post:
+    - echo 'this is a test'
+
 deployment:
   staging:
     branch: circle_ci
@@ -12,4 +16,3 @@ deployment:
       - docker build -t some-content-nginx .
       - docker tag some-content-nginx cryo3d/cryo3d
       - docker push cryo3d/cryo3d
-      - echo hi
