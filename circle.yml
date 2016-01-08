@@ -1,6 +1,8 @@
 machine:
   timezone:
     America/Denver
+  services:
+    - docker
   pre:
     - sudo curl -L -o /usr/bin/docker 'http://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci' 
     - sudo chmod 0755 /usr/bin/docker
@@ -13,10 +15,7 @@ deployment:
     branch: circle_ci
     commands:
       #- sudo ln -s /etc/apparmor.d/docker /etc/apparmor.d/force-complain/
-      - uname -a
-      - sudo aa-complain /etc/apparmor.d/docker
-      - service apparmor restart
-      - sudo docker daemon
+      #- docker login -e annie.kelly -u $DOCKER_USER -p $DOCKER_PASS
       - docker build -t some-content-nginx .
       - docker tag some-content-nginx cryo3d/cryo3d
       - docker push cryo3d/cryo3d
