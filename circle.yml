@@ -14,7 +14,7 @@ deployment:
     commands:
       #- sudo ln -s /etc/apparmor.d/docker /etc/apparmor.d/force-complain/
       - uname -a
-      - aa-complain /etc/apparmor.d/docker
+      - sudo aa-complain /etc/apparmor.d/docker
       - sudo docker daemon
       - docker build -t some-content-nginx .
       - docker tag some-content-nginx cryo3d/cryo3d
