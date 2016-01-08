@@ -6,6 +6,7 @@ machine:
     - sudo chmod 0755 /usr/bin/docker
     - sudo sed -i -e 's/ --userland-proxy=false//' /etc/default/docker
     - sudo sed -i -e 's/exec "$DOCKER" daemon $DOCKER_OPTS/exec "$DOCKER" --daemon $DOCKER_OPTS/' /etc/init/docker.conf
+    - sudo apt-get install apparmor-utils
 
 deployment:
   staging:
@@ -13,6 +14,7 @@ deployment:
     commands:
       #- sudo ln -s /etc/apparmor.d/docker /etc/apparmor.d/force-complain/
       - uname -a
+      - aa-complain /etc/apparmor.d/docker
       - sudo docker daemon
       - docker build -t some-content-nginx .
       - docker tag some-content-nginx cryo3d/cryo3d
