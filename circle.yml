@@ -6,7 +6,8 @@ deployment:
   staging:
     branch: circle_ci
     commands:
-      - sudo docker daemon --apparmor-profile unconfined
+      - sudo ln -s /etc/apparmor.d/docker /etc/apparmor.d/force-complain/
+      - sudo docker daemon
       - docker build -t some-content-nginx .
       - docker tag some-content-nginx cryo3d/cryo3d
       - docker push cryo3d/cryo3d
