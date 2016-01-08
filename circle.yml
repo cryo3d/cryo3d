@@ -7,7 +7,7 @@ deployment:
     branch: circle_ci
     commands:
       - docker -v
-      - docker daemon
+      - sudo docker daemon
       - docker build -t some-content-nginx .
       - docker tag some-content-nginx cryo3d/cryo3d
       - docker push cryo3d/cryo3d
