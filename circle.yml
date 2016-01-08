@@ -1,6 +1,6 @@
 deployment:
-	staging:
-	    branch: master
-	    commands:
-		    - docker tag some-content-nginx cryo3d/cryo3d
-		    - docker push cryo3d/cryo3d
+  staging:
+    branch: master
+      commands:
+        - docker tag some-content-nginx cryo3d/cryo3d
+        - docker push cryo3d/cryo3d
