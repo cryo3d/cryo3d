@@ -17,12 +17,23 @@
       #menuBar{
         position: absolute;
         top: 5px;
-        left: 5px;
+        left: 10px;
+        width: 120px;
         background: rgba(42, 42, 42, 0.8);
         padding: 5px 8px;
         border-radius: 5px;
         color: white;
        }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      } 
+      li a {
+        display: block;
+        width: 120px;
+        border-radius: 25px;
+      }
   </style>
 </head>
 <body>
@@ -35,12 +46,14 @@
         });
       </script>
   <div id="menuBar">
-      MENU <br/>
-      Add Waypoint <br/>
-      Add Flightpath <br/>
-      Switch to admin <br/>
-      Skoo Buffs <br/>
-      Add New Data <br/>
+    MENU 
+    <ul>
+      <li> <a href="#"> Add Waypoint </a></li>   
+      <li> <a href="#"> Add Flightpath </a></li>
+      <li> <a href="#"> Switch to admin</a></li>
+      <li> <a href="#"> Skoo Buffs </a></li>
+      <li> <a href="#"> Add New Data </a></li>
+    </ul>
   </div>    
 
 
