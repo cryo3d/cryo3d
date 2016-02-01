@@ -19,7 +19,66 @@
 <body>
   <div id="cesiumContainer"></div>
   <script>
-    var viewer = new Cesium.Viewer('cesiumContainer');
+
+  // var viewer = new Cesium.Viewer('cesiumContainer', {
+  //   imageryProvider : new Cesium.ArcGisMapServerImageryProvider({
+  //       url : 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer'
+  //   }),
+  //   baseLayerPicker : false
+  // });
+
+  // var layers = viewer.scene.imageryLayers;
+  // var blackMarble = layers.addImageryProvider(new Cesium.TileMapServiceImageryProvider({
+  //   url: '//cesiumjs.org/tilesets/imagery/blackmarble',
+  //   maximumLevel : 8,
+  //   credit : 'Black Marble imagery courtesy NASA Earth Observatory'
+  // }));
+  // blackMarble.alpha = 0.5;
+
+var viewer = new Cesium.Viewer('cesiumContainer');
+
+var entity = viewer.entities.add({
+  name : 'Entity Title',
+  polygon : {
+    hierarchy : Cesium.Cartesian3.fromDegreesArray([
+      //coordinates taken from Visualizing Spatial Data Tutorial from cesiumjs.org
+      //https://cesiumjs.org/tutorials/Visualizing-Spatial-Data/
+                              -109.080842,45.002073,
+                              -105.91517,45.002073,
+                              -104.058488,44.996596,
+                              -104.053011,43.002989,
+                              -104.053011,41.003906,
+                              -105.728954,40.998429,
+                              -107.919731,41.003906,
+                              -109.04798,40.998429,
+                              -111.047063,40.998429,
+                              -111.047063,42.000709,
+                              -111.047063,44.476286,
+                              -111.05254,45.002073]),
+    material : Cesium.Color.RED.withAlpha(0.5),
+    outline : true,
+    outlineColor : Cesium.Color.BLACK
+  }
+});
+
+viewer.zoomTo(entity);
+
+var entityDescription = 'Entity Description';
+
+entity.description = entityDescription;
+
   </script>
+
+<!--   <nav id="menu">
+  <header>
+    <h2>Menu</h2>
+  </header>
+  </nav>
+
+  <main id="panel">
+  <header>
+    <h2>Panel</h2>
+  </header>
+  </main> -->
 </body>
 </html>
