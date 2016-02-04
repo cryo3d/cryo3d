@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ViewModels/CatalogItemDownloadControl.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ViewModels/CatalogItemDownloadControl.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/*global require*/
+
+var CatalogItemControl = require('./CatalogItemControl');
+
+var svgDownload = require('../SvgPaths/svgDownload');
+var inherit = require('../Core/inherit');
+
+/**
+ * The view-model for a download control for catalog items. Clicking the control downloads the
+ * resource defined in catalog item's "downloadUrl" parameter.
+ *
+ * @alias CatalogItemDownloadControl
+ * @constructor
+ * @abstract
+ *
+ * @param {CatalogItem} catalogItem The CatalogItem instance.
+ * @param {String} url The url to download from.
+ */
+var CatalogItemDownloadControl = function(catalogItem) {
+    CatalogItemControl.call(this, catalogItem);
+
+    /**
+     * Gets or sets the name of the control which is set as the control's title.
+     * This property is observable.
+     * @type {String}
+     */
+    this.name = 'Download the data associated with this item.';
+
+    /**
+     * Gets or sets the text to be displayed as a button in the now viewing panel.
+     * This property is observable.
+     * @type {String}
+     */
+    this.text = "Download";
+
+    /**
+     * Gets or sets the svg icon of the control.  This property is observable.
+     * @type {Object}
+     */
+    this.svgIcon = svgDownload;
+
+    /**
+     * Gets or sets the height of the svg icon.  This property is observable.
+     * @type {Integer}
+     */
+    this.svgHeight = 800;
+
+    /**
+     * Gets or sets the width of the svg icon.  This property is observable.
+     * @type {Integer}
+     */
+    this.svgWidth = 800;
+
+};
+
+inherit(CatalogItemControl, CatalogItemDownloadControl);
+
+/**
+ * When implemented in a derived class, performs an action when the user clicks
+ * on this control.
+ * @abstract
+ * @protected
+ */
+CatalogItemDownloadControl.prototype.activate = function() {
+
+    var url = this.requiredProperty();
+
+    var isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+    var isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
+
+
+    //If in Chrome or Safari - download via virtual link click
+    if (isChrome || isSafari) {
+        //Creating new link node.
+        var link = document.createElement('a');
+        link.href = url;
+
+        if (link.download !== undefined){
+            //Set HTML5 download attribute. This will prevent file from opening if supported.
+            var urlPath = url.split('?')[0];
+            var fileName = urlPath.substring(0, this.name.lastIndexOf('/') - 1);
+            link.download = fileName;
+        }
+
+        //Dispatching click event.
+        if (document.createEvent) {
+            var e = document.createEvent('MouseEvents');
+            e.initEvent('click' ,true ,true);
+            link.dispatchEvent(e);
+            return true;
+        }
+    }
+
+    // Force file download (whether supported by server).
+    var query = 'download';
+    if (url.indexOf('?') === -1) {
+        query = '?' + query;
+    } else {
+        query = '&amp;'+ query;
+    }
+
+    window.open(url + query);
+};
+
+module.exports = CatalogItemDownloadControl;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AbsCode.html">AbsCode</a></li><li><a href="AbsConcept.html">AbsConcept</a></li><li><a href="AbsDataset.html">AbsDataset</a></li><li><a href="AbsIttCatalogGroup.html">AbsIttCatalogGroup</a></li><li><a href="AbsIttCatalogItem.html">AbsIttCatalogItem</a></li><li><a href="ArcGisCatalogGroup.html">ArcGisCatalogGroup</a></li><li><a href="ArcGisMapServerCatalogItem.html">ArcGisMapServerCatalogItem</a></li><li><a href="BingMapsCatalogItem.html">BingMapsCatalogItem</a></li><li><a href="CameraView.html">CameraView</a></li><li><a href="Catalog.html">Catalog</a></li><li><a href="CatalogGroup.html">CatalogGroup</a></li><li><a href="CatalogItem.html">CatalogItem</a></li><li><a href="CatalogItemControl.html">CatalogItemControl</a></li><li><a href="CatalogItemDownloadControl.html">CatalogItemDownloadControl</a></li><li><a href="CatalogMember.html">CatalogMember</a></li><li><a href="Cesium.html">Cesium</a></li><li><a href="CkanCatalogGroup.html">CkanCatalogGroup</a></li><li><a href="CompositeCatalogItem.html">CompositeCatalogItem</a></li><li><a href="CsvCatalogItem.html">CsvCatalogItem</a></li><li><a href="CsvDataset.html">CsvDataset</a></li><li><a href="CsvVariable.html">CsvVariable</a></li><li><a href="CswCatalogGroup.html">CswCatalogGroup</a></li><li><a href="CzmlCatalogItem.html">CzmlCatalogItem</a></li><li><a href="GeoJsonCatalogItem.html">GeoJsonCatalogItem</a></li><li><a href="GlobeOrMap.html">GlobeOrMap</a></li><li><a href="GpxCatalogItem.html">GpxCatalogItem</a></li><li><a href="ImageryLayerCatalogItem.html">ImageryLayerCatalogItem</a></li><li><a href="KmlCatalogItem.html">KmlCatalogItem</a></li><li><a href="Leaflet.html">Leaflet</a></li><li><a href="LeafletGeomVisualizer.html">LeafletGeomVisualizer</a></li><li><a href="Metadata.html">Metadata</a></li><li><a href="MetadataItem.html">MetadataItem</a></li><li><a href="ModelError.html">ModelError</a></li><li><a href="NavigationControl.html">NavigationControl</a></li><li><a href="OgrCatalogItem.html">OgrCatalogItem</a></li><li><a href="OpenStreetMapCatalogItem.html">OpenStreetMapCatalogItem</a></li><li><a href="ResetViewNavigationControl.html">ResetViewNavigationControl</a></li><li><a href="SocrataCatalogGroup.html">SocrataCatalogGroup</a></li><li><a href="Terria.html">Terria</a></li><li><a href="UserInterfaceControl.html">UserInterfaceControl</a></li><li><a href="WebFeatureServiceCatalogGroup.html">WebFeatureServiceCatalogGroup</a></li><li><a href="WebFeatureServiceCatalogItem.html">WebFeatureServiceCatalogItem</a></li><li><a href="WebMapServiceCatalogGroup.html">WebMapServiceCatalogGroup</a></li><li><a href="WebMapServiceCatalogItem.html">WebMapServiceCatalogItem</a></li><li><a href="WebMapTileServiceCatalogGroup.html">WebMapTileServiceCatalogGroup</a></li><li><a href="WebMapTileServiceCatalogItem.html">WebMapTileServiceCatalogItem</a></li><li><a href="ZoomInNavigationControl.html">ZoomInNavigationControl</a></li><li><a href="ZoomOutNavigationControl.html">ZoomOutNavigationControl</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addUserCatalogMember">addUserCatalogMember</a></li><li><a href="global.html#allFeaturesAvailablePromise">allFeaturesAvailablePromise</a></li><li><a href="global.html#checkBrowserCompatibility">checkBrowserCompatibility</a></li><li><a href="global.html#computeScreenSpacePosition">computeScreenSpacePosition</a></li><li><a href="global.html#containsAny">containsAny</a></li><li><a href="global.html#createCatalogItemFromFileOrUrl">createCatalogItemFromFileOrUrl</a></li><li><a href="global.html#createCatalogItemFromUrl">createCatalogItemFromUrl</a></li><li><a href="global.html#createCatalogMemberFromType">createCatalogMemberFromType</a></li><li><a href="global.html#direction">direction</a></li><li><a href="global.html#EarthGravityModel1996">EarthGravityModel1996</a></li><li><a href="global.html#error">error</a></li><li><a href="global.html#featureClicked">featureClicked</a></li><li><a href="global.html#features">features</a></li><li><a href="global.html#gmlToGeoJson">gmlToGeoJson</a></li><li><a href="global.html#hasChildren">hasChildren</a></li><li><a href="global.html#hasText">hasText</a></li><li><a href="global.html#invalidDropClasses">invalidDropClasses</a></li><li><a href="global.html#invalidDropElements">invalidDropElements</a></li><li><a href="global.html#isBrowserCompatible">isBrowserCompatible</a></li><li><a href="global.html#isCommonMobilePlatform">isCommonMobilePlatform</a></li><li><a href="global.html#isLoading">isLoading</a></li><li><a href="global.html#isOpen">isOpen</a></li><li><a href="global.html#isVisible">isVisible</a></li><li><a href="global.html#items">items</a></li><li><a href="global.html#map">map</a></li><li><a href="global.html#NowViewing">NowViewing</a></li><li><a href="global.html#overrideProperty">overrideProperty</a></li><li><a href="global.html#PickedFeatures">PickedFeatures</a></li><li><a href="global.html#pickPosition">pickPosition</a></li><li><a href="global.html#position">position</a></li><li><a href="global.html#Proj4Definitions">Proj4Definitions</a></li><li><a href="global.html#rectangle">rectangle</a></li><li><a href="global.html#rectangleToLatLngBounds">rectangleToLatLngBounds</a></li><li><a href="global.html#selectBaseMap">selectBaseMap</a></li><li><a href="global.html#showSelection">showSelection</a></li><li><a href="global.html#supportsIntervals">supportsIntervals</a></li><li><a href="global.html#TerriaViewer">TerriaViewer</a></li><li><a href="global.html#unionRectangleArray">unionRectangleArray</a></li><li><a href="global.html#unionRectangles">unionRectangles</a></li><li><a href="global.html#up">up</a></li><li><a href="global.html#updateApplicationOnHashChange">updateApplicationOnHashChange</a></li><li><a href="global.html#validDropClasses">validDropClasses</a></li><li><a href="global.html#validDropElements">validDropElements</a></li><li><a href="global.html#ViewerMode">ViewerMode</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Wed Jul 29 2015 10:31:45 GMT+1000 (AEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

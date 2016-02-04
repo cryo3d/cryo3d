@@ -1,0 +1,2602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: CatalogFunction</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: CatalogFunction</h1>
+
+    
+
+
+
+<section>
+
+<header>
+    <h2>
+    CatalogFunction
+    </h2>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+
+    
+        
+<dt>
+    <h4 class="name" id="CatalogFunction"><span class="type-signature">&lt;abstract> </span>new CatalogFunction<span class="signature">(terria)</span><span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>A member of a catalog that does some kind of parameterized processing or analysis.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>terria</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Terria.html">Terria</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The Terria instance.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogFunction.js.html">Models/CatalogFunction.js</a>, <a href="CatalogFunction.js.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        <ul>
+            <li><a href="CatalogMember.html">CatalogMember</a></li>
+        </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<dt>
+    <h4 class="name" id="parameters"><span class="type-signature">&lt;static> </span>parameters<span class="type-signature"> :CatalogFunctionParameters[]</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets the parameters used to <a href="CatalogFunction.html#invoke">CatalogFunction#invoke</a> to this process.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">CatalogFunctionParameters[]</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogFunction.js.html">Models/CatalogFunction.js</a>, <a href="CatalogFunction.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="cacheDuration"><span class="type-signature"></span>cacheDuration<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets or sets the cache duration to use for proxied URLs for this catalog member.  If undefined, proxied URLs are effectively cachable
+forever.  The duration is expressed as a Varnish-like duration string, such as '1d' (one day) or '10000s' (ten thousand seconds).</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#cacheDuration">CatalogMember#cacheDuration</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line100">line 100</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="description"><span class="type-signature"></span>description<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets or sets the description of the item.  This property is observable.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#description">CatalogMember#description</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="hasDescription"><span class="type-signature"></span>hasDescription<span class="type-signature"> :bool</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Tests whether a description is available, either in the 'description' property
+or as a member of the 'info' array.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">bool</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#hasDescription">CatalogMember#hasDescription</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line211">line 211</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="info"><span class="type-signature"></span>info<span class="type-signature"> :Array</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets or sets the array of section titles and contents for display in the layer info panel.
+In future this may replace 'description' above - this list should not contain
+sections named 'description' or 'Description' if the 'description' property
+is also set as both will be displayed.
+The object is of the form {name:string, content:string}.
+Content will be rendered as Markdown with HTML.
+This property is observable.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#info">CatalogMember#info</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>[]</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line53">line 53</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="infoSectionOrder"><span class="type-signature"></span>infoSectionOrder<span class="type-signature"> :String[]</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets or sets the array of section titles definining the display order of info sections.  If this property
+is not defined, CatalogItemInfoViewModel.infoSectionOrder is used.  This property is observable.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String[]</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#infoSectionOrder">CatalogMember#infoSectionOrder</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line60">line 60</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="initialMessage"><span class="type-signature"></span>initialMessage<span class="type-signature"> :Object</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>A message object that is presented to the user when an item or group is initially clicked
+The object is of the form {title:string, content:string, key: string}.
+This property is observable.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#initialMessage">CatalogMember#initialMessage</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line93">line 93</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="isHidden"><span class="type-signature"></span>isHidden<span class="type-signature"> :Boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets or sets a value indicating whether this item is hidden from the catalog.  This
+property is observable.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Boolean</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#isHidden">CatalogMember#isHidden</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>false</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line85">line 85</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="isMappable"><span class="type-signature"></span>isMappable<span class="type-signature"> :Boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets a value indicating whether this catalog member is mappable.  Mappable catalog members can be enabled and shown on the map.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Boolean</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#isMappable">CatalogMember#isMappable</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line146">line 146</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="isPromoted"><span class="type-signature"></span>isPromoted<span class="type-signature"> :Boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets or sets a value indicating whether this item is kept above other non-promoted items.
+This property is observable.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Boolean</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#isPromoted">CatalogMember#isPromoted</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>false</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line77">line 77</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="isUserSupplied"><span class="type-signature"></span>isUserSupplied<span class="type-signature"> :Boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets or sets a value indicating whether this member was supplied by the user rather than loaded from one of the
+<a href="Terria.html#initSources">Terria#initSources</a>.  User-supplied members must be serialized completely when, for example,
+serializing enabled members for sharing.  This property is observable.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Boolean</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#isUserSupplied">CatalogMember#isUserSupplied</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>true</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line69">line 69</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="name"><span class="type-signature"></span>name<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets or sets the name of the item.  This property is observable.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#name">CatalogMember#name</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line34">line 34</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="propertiesForSharing"><span class="type-signature"></span>propertiesForSharing<span class="type-signature"> :String[]</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets the set of names of the properties to be serialized for this object when <a href="CatalogMember.html#serializeToJson">CatalogMember#serializeToJson</a> is called
+and the <code>serializeForSharing</code> flag is set in the options.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String[]</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#propertiesForSharing">CatalogMember#propertiesForSharing</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line199">line 199</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="serializers"><span class="type-signature"></span>serializers<span class="type-signature"> :Object</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets the set of functions used to serialize individual properties in <a href="CatalogMember.html#serializeToJson">CatalogMember#serializeToJson</a>.
+When a property name on the model matches the name of a property in the serializers object lieral,
+the value will be called as a function and passed a reference to the model, a reference to the destination
+JSON object literal, and the name of the property.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#serializers">CatalogMember#serializers</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line187">line 187</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="showsInfo"><span class="type-signature"></span>showsInfo<span class="type-signature"> :Boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets a value indicating whether this catalog member can show information.  If so, an info icon will be shown next to the item
+in the data catalog.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Boolean</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogFunction.js.html">Models/CatalogFunction.js</a>, <a href="CatalogFunction.js.html#line33">line 33</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="terria"><span class="type-signature"></span>terria<span class="type-signature"> :<a href="Terria.html">Terria</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets the Terria instance.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Terria.html">Terria</a></span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#terria">CatalogMember#terria</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line135">line 135</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="type"><span class="type-signature"></span>type<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets the type of data item represented by this instance.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#type">CatalogMember#type</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line113">line 113</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="typeName"><span class="type-signature"></span>typeName<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets a human-readable name for this type of data source, such as 'Web Map Service (WMS)'.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#typeName">CatalogMember#typeName</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line124">line 124</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="updaters"><span class="type-signature"></span>updaters<span class="type-signature"> :Object</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Gets the set of functions used to update individual properties in <a href="CatalogMember.html#updateFromJson">CatalogMember#updateFromJson</a>.
+When a property name in the returned object literal matches the name of a property on this instance, the value
+will be called as a function and passed a reference to this instance, a reference to the source JSON object
+literal, and the name of the property.  If part of the update happens asynchronously, the updater function should
+return a Promise that resolves when it is complete.</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#updaters">CatalogMember#updaters</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line173">line 173</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<dt>
+    <h4 class="name" id="findInfoSection"><span class="type-signature"></span>findInfoSection<span class="signature">(sectionName)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Finds an <a href="CatalogMember.html#info">CatalogMember#info</a> section by name.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sectionName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The name of the section to find.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#findInfoSection">CatalogMember#findInfoSection</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line372">line 372</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The section, or undefined if no section with that name exists.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="invoke"><span class="type-signature"></span>invoke<span class="signature">(parameters)</span><span class="type-signature"> &rarr; {AsyncProcessResultCatalogItem}</span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Invokes the process.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>parameters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parameters to the process.  Each required parameter in CatalogFunction#parameters must have a corresponding key in this object.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogFunction.js.html">Models/CatalogFunction.js</a>, <a href="CatalogFunction.js.html#line57">line 57</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The result of invoking this process.  Because the process typically proceeds asynchronously, the result is a temporary
+        catalog item that resolves to the real one once the process finishes.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">AsyncProcessResultCatalogItem</span>
+
+
+    </dd>
+</dl>
+
+        
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="serializeToJson"><span class="type-signature"></span>serializeToJson<span class="signature">(<span class="optional">options</span>)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Serializes the data item to JSON.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Object with the following properties:</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>enabledItemsOnly</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>true if only enabled data items (and their groups) should be serialized,
+                 or false if all data items should be serialized.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>itemsSkippedBecauseTheyAreNotEnabled</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">CatalogMember[]</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>An array that, if provided, is populated on return with
+       all of the data items that were not serialized because they were not enabled.  The array will be empty if
+       options.enabledItemsOnly is false.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>skipItemsWithLocalData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>true if items with a serializable 'data' property should be skipped entirely.
+                 This is useful to avoid creating a JSON data structure with potentially very large embedded data.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>itemsSkippedBecauseTheyHaveLocalData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">CatalogMember[]</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>An array that, if provided, is populated on return
+       with all of the data items that were not serialized because they have a serializable 'data' property.  The array will be empty
+       if options.skipItemsWithLocalData is false.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>serializeForSharing</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>true to only serialize properties that are typically necessary for sharing this member
+                                                     with other users, such as <a href="CatalogGroup.html#isOpen">CatalogGroup#isOpen</a>, <a href="CatalogItem.html#isEnabled">CatalogItem#isEnabled</a>,
+                                                     <a href="CatalogItem.html#isLegendVisible">CatalogItem#isLegendVisible</a>, and <a href="ImageryLayerCatalogItem.html#opacity">ImageryLayerCatalogItem#opacity</a>,
+                                                     rather than serializing all properties needed to completely recreate the catalog.  The set of properties
+                                                     that is serialized when this property is true is given by each model's
+                                                     <a href="CatalogMember.html#propertiesForSharing">CatalogMember#propertiesForSharing</a> property.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>userSuppliedOnly</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>true to only serialize catalog members (and their containing groups) that have been identified as having been
+                 supplied by the user (<a href="CatalogMember.html#isUserSupplied">CatalogMember#isUserSupplied</a> is true); false to serialize all catalog members.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#serializeToJson">CatalogMember#serializeToJson</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line312">line 312</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The serialized JSON object-literal.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="updateFromJson"><span class="type-signature"></span>updateFromJson<span class="signature">(json, <span class="optional">options</span>)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Updates the catalog member from a JSON object-literal description of it.
+Existing collections with the same name as a collection in the JSON description are
+updated.  If the description contains a collection with a name that does not yet exist,
+it is created.  Because parts of the update may happen asynchronously, this method
+returns at Promise that will resolve when the update is completely done.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>json</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The JSON description.  The JSON should be in the form of an object literal, not a string.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Object with the following properties:</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>onlyUpdateExistingItems</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>true to only update existing items and never create new ones, or false is new items
+                                                   may be created by this update.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>isUserSupplied</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>If specified, sets the <a href="CatalogMember.html#isUserSupplied">CatalogMember#isUserSupplied</a> property of updated catalog members
+                                          to the given value.  If not specified, the property is left unchanged.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="CatalogMember.html#updateFromJson">CatalogMember#updateFromJson</a>
+    </li></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="CatalogMember.js.html">Models/CatalogMember.js</a>, <a href="CatalogMember.js.html#line268">line 268</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>A promise that resolves when the update is complete.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+        
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="AbsCode.html">AbsCode</a></li><li><a href="AbsConcept.html">AbsConcept</a></li><li><a href="AbsDataset.html">AbsDataset</a></li><li><a href="AbsIttCatalogGroup.html">AbsIttCatalogGroup</a></li><li><a href="AbsIttCatalogItem.html">AbsIttCatalogItem</a></li><li><a href="ArcGisCatalogGroup.html">ArcGisCatalogGroup</a></li><li><a href="ArcGisMapServerCatalogItem.html">ArcGisMapServerCatalogItem</a></li><li><a href="BingMapsCatalogItem.html">BingMapsCatalogItem</a></li><li><a href="CameraView.html">CameraView</a></li><li><a href="Catalog.html">Catalog</a></li><li><a href="CatalogFunction.html">CatalogFunction</a></li><li><a href="CatalogGroup.html">CatalogGroup</a></li><li><a href="CatalogItem.html">CatalogItem</a></li><li><a href="CatalogItemControl.html">CatalogItemControl</a></li><li><a href="CatalogItemDownloadControl.html">CatalogItemDownloadControl</a></li><li><a href="CatalogMember.html">CatalogMember</a></li><li><a href="Cesium.html">Cesium</a></li><li><a href="CkanCatalogGroup.html">CkanCatalogGroup</a></li><li><a href="CompositeCatalogItem.html">CompositeCatalogItem</a></li><li><a href="CsvCatalogItem.html">CsvCatalogItem</a></li><li><a href="CsvDataset.html">CsvDataset</a></li><li><a href="CsvVariable.html">CsvVariable</a></li><li><a href="CswCatalogGroup.html">CswCatalogGroup</a></li><li><a href="CzmlCatalogItem.html">CzmlCatalogItem</a></li><li><a href="DataTable.html">DataTable</a></li><li><a href="DataVariable.html">DataVariable</a></li><li><a href="FunctionParameter.html">FunctionParameter</a></li><li><a href="GeoJsonCatalogItem.html">GeoJsonCatalogItem</a></li><li><a href="GlobeOrMap.html">GlobeOrMap</a></li><li><a href="GpxCatalogItem.html">GpxCatalogItem</a></li><li><a href="ImageryLayerCatalogItem.html">ImageryLayerCatalogItem</a></li><li><a href="KmlCatalogItem.html">KmlCatalogItem</a></li><li><a href="Leaflet.html">Leaflet</a></li><li><a href="LeafletGeomVisualizer.html">LeafletGeomVisualizer</a></li><li><a href="Metadata.html">Metadata</a></li><li><a href="MetadataItem.html">MetadataItem</a></li><li><a href="ModelError.html">ModelError</a></li><li><a href="NavigationControl.html">NavigationControl</a></li><li><a href="OgrCatalogItem.html">OgrCatalogItem</a></li><li><a href="OpenStreetMapCatalogItem.html">OpenStreetMapCatalogItem</a></li><li><a href="ResetViewNavigationControl.html">ResetViewNavigationControl</a></li><li><a href="SocrataCatalogGroup.html">SocrataCatalogGroup</a></li><li><a href="TableDataSource.html">TableDataSource</a></li><li><a href="Terria.html">Terria</a></li><li><a href="UserInterfaceControl.html">UserInterfaceControl</a></li><li><a href="WebFeatureServiceCatalogGroup.html">WebFeatureServiceCatalogGroup</a></li><li><a href="WebFeatureServiceCatalogItem.html">WebFeatureServiceCatalogItem</a></li><li><a href="WebMapServiceCatalogGroup.html">WebMapServiceCatalogGroup</a></li><li><a href="WebMapServiceCatalogItem.html">WebMapServiceCatalogItem</a></li><li><a href="WebMapTileServiceCatalogGroup.html">WebMapTileServiceCatalogGroup</a></li><li><a href="WebMapTileServiceCatalogItem.html">WebMapTileServiceCatalogItem</a></li><li><a href="WfsFeaturesCatalogGroup.html">WfsFeaturesCatalogGroup</a></li><li><a href="ZoomInNavigationControl.html">ZoomInNavigationControl</a></li><li><a href="ZoomOutNavigationControl.html">ZoomOutNavigationControl</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Fri Oct 16 2015 13:49:21 GMT+1100 (AEDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
