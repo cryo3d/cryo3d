@@ -20,6 +20,29 @@
   <div id="cesiumContainer"></div>
   <script>
     var viewer = new Cesium.Viewer('cesiumContainer');
+
+    var pinBuilder = new Cesium.PinBuilder();
+
+    var bluePin = viewer.entities.add({
+      name : 'Blank blue pin',
+      position : Cesium.Cartesian3.fromDegrees(-75.170726, 39.9208667),
+      billboard : {
+        image : pinBuilder.fromColor(Cesium.Color.ROYALBLUE, 48).toDataURL(),
+        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
+      }
+    });
+
+    var blackPin = viewer.entities.add({
+      name : 'Blank black pin',
+      position : Cesium.Cartesian3.fromDegrees(-74.170726, 39.9208667),
+      billboard : {
+        image : pinBuilder.fromColor(Cesium.Color.BLACK, 48).toDataURL(),
+        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
+      }
+    });
+
+
+
   </script>
 </body>
 </html>
