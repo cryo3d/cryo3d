@@ -238,7 +238,7 @@ define([
      * The default extent the camera will view on creation.
      * @type Rectangle
      */
-    Camera.DEFAULT_VIEW_RECTANGLE = Rectangle.fromDegrees(-95.0, -20.0, -70.0, 90.0);
+    Camera.DEFAULT_VIEW_RECTANGLE = Rectangle.fromDegrees(40.0, 20.0, 70.0, 110.0);
 
     /**
      * A scalar to multiply to the camera position and add it back after setting the camera to view the rectangle.
@@ -246,7 +246,7 @@ define([
      * will move it further away from the extent, and a value less than zero will move it close to the extent.
      * @type Number
      */
-    Camera.DEFAULT_VIEW_FACTOR = 0.5;
+    Camera.DEFAULT_VIEW_FACTOR = 130.5;
 
     function updateViewMatrix(camera) {
         var r = camera._right;
