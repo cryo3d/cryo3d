@@ -82,6 +82,10 @@
   
   	<!-- TO DO: MAKE JS EXTERNAL -->    
   	<script>
+		var extent = Cesium.Rectangle.fromDegrees(-99.240573,41.808406,20.313421,86.468825);
+    	Cesium.Camera.DEFAULT_VIEW_RECTANGLE = extent;
+    	Cesium.Camera.DEFAULT_VIEW_FACTOR = 0;
+
 		var viewer = new Cesium.Viewer('cesiumContainer', {
 		animation : false,
 		timeline : false,
@@ -98,7 +102,12 @@
       	} 	
     	});
 
-      	var bluePinDescription = 'This is Greenland up close and personal... AKA totally white';
+      	var bluePinDescription = 
+      		'<h1>Greenland</h1>' +
+      		'<p>This is Greenland up close and personal... AKA totally white.</p>' +
+      		'<p>Despite its name, Greenland actually means "Land of People."</p>' +
+      		'<br>' +
+      		'<img src="http://www.higharctic.org/wp-content/uploads/2011/12/Map-for-HAI-webpage.jpg" alt="Greenland Map" style="width:250px;height:400px;">';
       	bluePin.description = bluePinDescription;
     	
     	// Test pin 2 for Greenland
