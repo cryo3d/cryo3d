@@ -31,6 +31,7 @@
 			overflow: auto;
 			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 			font-size: 16px;
+			font-size: 1.5vw;
 			font-style: normal;
 			font-variant: normal;
 			font-weight: 500px;
@@ -50,7 +51,7 @@
 			text-decoration: none;
 	  	}
 	  	li a.active {
-			background-color: #409DD2;
+			background-color: #6495ED;
 			color: white;
 	  	}
 	  	li a:hover:not(.active) {
@@ -84,7 +85,32 @@
 		var viewer = new Cesium.Viewer('cesiumContainer', {
 		animation : false,
 		timeline : false,
-	});
+		});
+
+		// Test pin 1 for Greenland
+		var pinBuilder = new Cesium.PinBuilder();
+    	var bluePin = viewer.entities.add({
+      	name : 'Blank blue pin',
+      	position : Cesium.Cartesian3.fromDegrees(-40.170726, 70.9208667),
+      	billboard : {
+        image : pinBuilder.fromColor(Cesium.Color.CORNFLOWERBLUE, 36).toDataURL(),
+        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
+      	} 	
+    	});
+
+      	var bluePinDescription = 'This is Greenland up close and personal... AKA totally white';
+      	bluePin.description = bluePinDescription;
+    	
+    	// Test pin 2 for Greenland
+    	var blackPin = viewer.entities.add({
+      	name : 'Blank black pin',
+      	position : Cesium.Cartesian3.fromDegrees(-40.170726, 75.9208667),
+      	billboard : {
+        image : pinBuilder.fromColor(Cesium.Color.BLACK, 36).toDataURL(),
+        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
+      	}
+    	});
+
   	</script>
   
   	<div id= "menuButton">
@@ -113,4 +139,3 @@
 </body>
 
 </html>
->>>>>>> afad85979b4e30348e1756855f943afcd4233cb2
