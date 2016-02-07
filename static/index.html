@@ -28,7 +28,8 @@
 			left: 0px;
 			width: 13%;
 			height: 75%;
-			overflow: auto;
+			/*overflow: auto;*/
+			overflow: no-scroll;
 			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 			font-size: 16px;
 			font-size: 1.5vw;
@@ -110,6 +111,57 @@
         verticalOrigin : Cesium.VerticalOrigin.BOTTOM
       	}
     	});
+
+    	//FLIGHT PATH STUFF
+		//when next button pressed, take user to next pin
+		//this one needs a lot of work
+		function flyToNextWaypoint(pin){
+		    var property = new Cesium.SampledPositionProperty();
+		    var position = Cesium.Cartesian3.fromDegrees(-40.170726, 70.9208667);
+
+	        //Also create a point for each sample we generate.
+	        viewer.entities.add({
+	            position : position,
+	            point : {
+	                pixelSize : 8,
+	                //color : Cesium.Color.TRANSPARENT,
+	                color : Cesium.Color.YELLOW,
+	                outlineColor : Cesium.Color.YELLOW,
+	                outlineWidth : 3
+	            }
+	        });
+	   		return property;
+		}
+
+		//connect waypoints on map and draw a line
+		//this one is close to working
+		function drawFlightPath(waypoints){
+			var points = [];
+			for (var i = 0; i < waypoints.length; i++){
+				//console.log(waypoints[i].position.UNIT_X);
+				console.log(waypoints[i].position.getValue().x);
+				points.push(new Cesium.Cartesian3(waypoints[i].position.getValue().x, waypoints[i].position.getValue().y));
+			}
+			var path = new Cesium.PolylineGraphics(points);
+
+		    viewer.entities.add({
+		    	polyline : path,
+			    path : {
+			        resolution : 1,
+			        material : new Cesium.PolylineGlowMaterialProperty({
+			            glowPower : 0.1,
+			            color : Cesium.Color.YELLOW
+			        }),
+			        width : 10
+			    }
+		    });
+
+			return path;
+		}
+
+		var waypoints = [bluePin, blackPin];
+		drawFlightPath(waypoints);
+		//END OF FLIGHT PATH STUFF
 
   	</script>
   
