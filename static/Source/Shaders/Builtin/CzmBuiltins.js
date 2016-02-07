@@ -33,6 +33,8 @@ define([
         './Structs/materialInput',
         './Structs/ray',
         './Structs/raySegment',
+        './Functions/RGBToXYZ',
+        './Functions/XYZToRGB',
         './Functions/alphaWeight',
         './Functions/antialias',
         './Functions/columbusViewMorph',
@@ -66,7 +68,6 @@ define([
         './Functions/phong',
         './Functions/pointAlongRay',
         './Functions/rayEllipsoidIntersectionInterval',
-        './Functions/RGBToXYZ',
         './Functions/saturation',
         './Functions/signNotZero',
         './Functions/tangentToEyeSpaceMatrix',
@@ -74,8 +75,7 @@ define([
         './Functions/translucentPhong',
         './Functions/transpose',
         './Functions/unpackDepth',
-        './Functions/windowToEyeCoordinates',
-        './Functions/XYZToRGB'
+        './Functions/windowToEyeCoordinates'
     ], function(
         czm_degreesPerRadian,
         czm_depthRange,
@@ -109,6 +109,8 @@ define([
         czm_materialInput,
         czm_ray,
         czm_raySegment,
+        czm_RGBToXYZ,
+        czm_XYZToRGB,
         czm_alphaWeight,
         czm_antialias,
         czm_columbusViewMorph,
@@ -142,7 +144,6 @@ define([
         czm_phong,
         czm_pointAlongRay,
         czm_rayEllipsoidIntersectionInterval,
-        czm_RGBToXYZ,
         czm_saturation,
         czm_signNotZero,
         czm_tangentToEyeSpaceMatrix,
@@ -150,8 +151,7 @@ define([
         czm_translucentPhong,
         czm_transpose,
         czm_unpackDepth,
-        czm_windowToEyeCoordinates,
-        czm_XYZToRGB) {
+        czm_windowToEyeCoordinates) {
                            "use strict";
                            return {
         czm_degreesPerRadian : czm_degreesPerRadian,
@@ -186,6 +186,8 @@ define([
         czm_materialInput : czm_materialInput,
         czm_ray : czm_ray,
         czm_raySegment : czm_raySegment,
+        czm_RGBToXYZ : czm_RGBToXYZ,
+        czm_XYZToRGB : czm_XYZToRGB,
         czm_alphaWeight : czm_alphaWeight,
         czm_antialias : czm_antialias,
         czm_columbusViewMorph : czm_columbusViewMorph,
@@ -219,7 +221,6 @@ define([
         czm_phong : czm_phong,
         czm_pointAlongRay : czm_pointAlongRay,
         czm_rayEllipsoidIntersectionInterval : czm_rayEllipsoidIntersectionInterval,
-        czm_RGBToXYZ : czm_RGBToXYZ,
         czm_saturation : czm_saturation,
         czm_signNotZero : czm_signNotZero,
         czm_tangentToEyeSpaceMatrix : czm_tangentToEyeSpaceMatrix,
@@ -227,6 +228,5 @@ define([
         czm_translucentPhong : czm_translucentPhong,
         czm_transpose : czm_transpose,
         czm_unpackDepth : czm_unpackDepth,
-        czm_windowToEyeCoordinates : czm_windowToEyeCoordinates,
-        czm_XYZToRGB : czm_XYZToRGB};
+        czm_windowToEyeCoordinates : czm_windowToEyeCoordinates};
 });

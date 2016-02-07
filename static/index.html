@@ -28,7 +28,8 @@
 			left: 0px;
 			width: 13%;
 			height: 75%;
-			overflow: auto;
+			/*overflow: auto;*/
+			overflow: no-scroll;
 			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 			font-size: 16px;
 			font-size: 1.5vw;
@@ -91,11 +92,15 @@
 		timeline : false,
 		});
 
+		//a series of points (in degrees) to describe waypoints in greenland
+		var greenlandTour = [[-40.170726, 70.9208667], [-40.170726, 75.9208667]];
+		drawFlightPath(greenlandTour);
+
 		// Test pin 1 for Greenland
 		var pinBuilder = new Cesium.PinBuilder();
     	var bluePin = viewer.entities.add({
       	name : 'Blank blue pin',
-      	position : Cesium.Cartesian3.fromDegrees(-40.170726, 70.9208667),
+      	position : Cesium.Cartesian3.fromDegrees(greenlandTour[0][0], greenlandTour[0][1]),
       	billboard : {
         image : pinBuilder.fromColor(Cesium.Color.CORNFLOWERBLUE, 36).toDataURL(),
         verticalOrigin : Cesium.VerticalOrigin.BOTTOM
@@ -113,12 +118,37 @@
     	// Test pin 2 for Greenland
     	var blackPin = viewer.entities.add({
       	name : 'Blank black pin',
-      	position : Cesium.Cartesian3.fromDegrees(-40.170726, 75.9208667),
+      	position : Cesium.Cartesian3.fromDegrees(greenlandTour[1][0], greenlandTour[1][1]),
       	billboard : {
         image : pinBuilder.fromColor(Cesium.Color.BLACK, 36).toDataURL(),
         verticalOrigin : Cesium.VerticalOrigin.BOTTOM
       	}
     	});
+
+    	//FLIGHT PATH STUFF
+		//when next button pressed, take user to next pin
+		function flyToNextWaypoint(pin){
+		}
+
+		//connect waypoints on map and draw a line
+		//this one is close to working
+		function drawFlightPath(waypoints){
+			var points = [];
+			for (var i = 0; i < waypoints.length; i++){
+				points.push(waypoints[i][0]);
+				points.push(waypoints[i][1]);
+			}		
+			var redLine = viewer.entities.add({
+			    name : 'Red line on the surface',
+			    polyline : {
+			        positions : Cesium.Cartesian3.fromDegreesArray(points),
+			        width : 3,
+			        material : Cesium.Color.RED
+			    }
+			});
+			return redLine;
+		}
+		//END OF FLIGHT PATH STUFF
 
   	</script>
   
