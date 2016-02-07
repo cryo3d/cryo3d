@@ -35,8 +35,8 @@ $ git remote add upstream https://github.com/cryo3d/cryo3d
 
 Throughout development cycle, pull changes from upstream to stay up-to-date with "master."  Use the following commands:
 ```
-$ git fetch upstream
-$ git pull upstream
+$ git fetch upstream name_of_branch
+$ git pull upstream name_of_banch
 ```
 **Make sure to checkout a new branch (on your own fork) with each major story/feature**
 
