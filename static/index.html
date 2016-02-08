@@ -92,6 +92,35 @@
 		timeline : false,
 		});
 
+		//allows us to run our own scripts
+		viewer.infoBox.frame.removeAttribute('sandbox');
+
+    	//FLIGHT PATH STUFF
+		//when next button pressed, take user to next pin
+		function flyToNextWaypoint(pin){
+			alert("TESTING BUTTON!");
+		}
+
+		//connect waypoints on map and draw a line
+		//this one is close to working
+		function drawFlightPath(waypoints){
+			var points = [];
+			for (var i = 0; i < waypoints.length; i++){
+				points.push(waypoints[i][0]);
+				points.push(waypoints[i][1]);
+			}		
+			var redLine = viewer.entities.add({
+			    name : 'Red line on the surface',
+			    polyline : {
+			        positions : Cesium.Cartesian3.fromDegreesArray(points),
+			        width : 3,
+			        material : Cesium.Color.RED
+			    }
+			});
+			return redLine;
+		}
+		//END OF FLIGHT PATH STUFF
+
 		//a series of points (in degrees) to describe waypoints in greenland
 		var greenlandTour = [[-40.170726, 70.9208667], [-40.170726, 75.9208667]];
 		drawFlightPath(greenlandTour);
@@ -125,33 +154,6 @@
         verticalOrigin : Cesium.VerticalOrigin.BOTTOM
       	}
     	});
-
-    	//FLIGHT PATH STUFF
-		//when next button pressed, take user to next pin
-		function flyToNextWaypoint(pin){
-			alert("TESTING BUTTON!");
-		}
-
-		//connect waypoints on map and draw a line
-		//this one is close to working
-		function drawFlightPath(waypoints){
-			var points = [];
-			for (var i = 0; i < waypoints.length; i++){
-				points.push(waypoints[i][0]);
-				points.push(waypoints[i][1]);
-			}		
-			var redLine = viewer.entities.add({
-			    name : 'Red line on the surface',
-			    polyline : {
-			        positions : Cesium.Cartesian3.fromDegreesArray(points),
-			        width : 3,
-			        material : Cesium.Color.RED
-			    }
-			});
-			return redLine;
-		}
-		//END OF FLIGHT PATH STUFF
-
   	</script>
   
   	<div id= "menuButton">
@@ -163,7 +165,7 @@
 	  		<li> <a class="active" href="#home">Home</a></li>   
 	  		<li> <a href="#">Add Flightpath</a></li>
 	  		<li> <a href="#">Switch to Admin</a></li>
-	  		<li> <a href="#">Skoo Buffs</a></li>
+	  		<li> <a onclick="skooBuffs()" href="javascript:void(0);">Skoo Buffs</a></li>
 		</ul>
   	</div>
 
@@ -175,6 +177,10 @@
 	  		else
 				e.style.display = 'block';
 		}  
+
+		function skooBuffs() {
+			alert("skoo Buffs!");
+		}
   	</script>  
 
 </body>
