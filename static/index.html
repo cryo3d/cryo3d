@@ -142,7 +142,7 @@
       		'<p>Despite its name, Greenland actually means "Land of People."</p>' +
       		'<br>' +
       		'<img src="http://www.higharctic.org/wp-content/uploads/2011/12/Map-for-HAI-webpage.jpg" alt="Greenland Map" style="width:250px;height:400px;">' + 
-      		'<input id="clickMe" type="button" value="Next waypoint" onclick="flyToNextWaypoint();" />'; //not working because cesium entities are sandboxed, js blocked to prevent XSS
+      		'<input id="clickMe" type="button" value="Next waypoint" onclick="flyToNextWaypoint()" />'; //js functions here are not recognized 4 some reason
       	bluePin.description = bluePinDescription;
     	
     	// Test pin 2 for Greenland
@@ -163,8 +163,8 @@
   	<div id="menuBar">
 		<ul>
 	  		<li> <a class="active" href="#home">Home</a></li>   
-	  		<li> <a href="#">Add Flightpath</a></li>
-	  		<li> <a href="#">Switch to Admin</a></li>
+	  		<li> <a onclick="addFlightPath()" href="javascript:void(0);">Add Flight Path</a></li>
+	  		<li> <a onclick="switchToAdmin()" href="javascript:void(0);">Switch to Admin</a></li>
 	  		<li> <a onclick="skooBuffs()" href="javascript:void(0);">Skoo Buffs</a></li>
 		</ul>
   	</div>
@@ -178,9 +178,19 @@
 				e.style.display = 'block';
 		}  
 
+		function addFlightPath() {
+			alert("Add flight path");
+		}
+
+		function switchToAdmin() {
+			alert("Switch to admin");
+		}	
+
 		function skooBuffs() {
 			alert("skoo Buffs!");
 		}
+
+	
   	</script>  
 
 </body>
