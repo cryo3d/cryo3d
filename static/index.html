@@ -28,7 +28,7 @@
 			left: 0px;
 			width: 13%;
 			height: 75%;
-			overflow: auto;
+			overflow: no-scroll;
 			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 			font-size: 16px;
 			font-size: 1.5vw;
@@ -85,41 +85,68 @@
 		var extent = Cesium.Rectangle.fromDegrees(-99.240573,41.808406,20.313421,86.468825);
     	Cesium.Camera.DEFAULT_VIEW_RECTANGLE = extent;
     	Cesium.Camera.DEFAULT_VIEW_FACTOR = 0;
-
 		var viewer = new Cesium.Viewer('cesiumContainer', {
 		animation : false,
 		timeline : false,
 		});
-
+		//allows us to run our own scripts
+		viewer.infoBox.frame.removeAttribute('sandbox');
+    	//FLIGHT PATH STUFF
+		//when next button pressed, take user to next pin
+		function flyToNextWaypoint(pin){
+			alert("TESTING BUTTON!");
+		}
+		//connect waypoints on map and draw a line
+		//this one is close to working
+		function drawFlightPath(waypoints){
+			var points = [];
+			for (var i = 0; i < waypoints.length; i++){
+				points.push(waypoints[i][0]);
+				points.push(waypoints[i][1]);
+			}		
+			var redLine = viewer.entities.add({
+			    name : 'Red line on the surface',
+			    polyline : {
+			        positions : Cesium.Cartesian3.fromDegreesArray(points),
+			        width : 3,
+			        material : Cesium.Color.RED
+			    }
+			});
+			return redLine;
+		}
+		//END OF FLIGHT PATH STUFF
+		//a series of points (in degrees) to describe waypoints in greenland
+		var greenlandTour = [[-40.170726, 70.9208667], [-40.170726, 75.9208667]];
+		drawFlightPath(greenlandTour);
 		// Test pin 1 for Greenland
 		var pinBuilder = new Cesium.PinBuilder();
     	var bluePin = viewer.entities.add({
       	name : 'Blank blue pin',
-      	position : Cesium.Cartesian3.fromDegrees(-40.170726, 70.9208667),
+      	position : Cesium.Cartesian3.fromDegrees(greenlandTour[0][0], greenlandTour[0][1]),
       	billboard : {
         image : pinBuilder.fromColor(Cesium.Color.CORNFLOWERBLUE, 36).toDataURL(),
         verticalOrigin : Cesium.VerticalOrigin.BOTTOM
       	} 	
     	});
-
       	var bluePinDescription = 
       		'<h1>Greenland</h1>' +
       		'<p>This is Greenland up close and personal... AKA totally white.</p>' +
       		'<p>Despite its name, Greenland actually means "Land of People."</p>' +
       		'<br>' +
-      		'<img src="http://www.higharctic.org/wp-content/uploads/2011/12/Map-for-HAI-webpage.jpg" alt="Greenland Map" style="width:250px;height:400px;">';
+      		'<img src="images/greenland_map.jpg" alt="Greenland Map" style="width:250px;height:400px;">' + 
+      		'<input id="clickMe" type="button" value="Next waypoint" onclick="flyToNextWaypoint();" />';
+      	// External image just in case: http://www.higharctic.org/wp-content/uploads/2011/12/Map-for-HAI-webpage.jpg
       	bluePin.description = bluePinDescription;
     	
     	// Test pin 2 for Greenland
     	var blackPin = viewer.entities.add({
       	name : 'Blank black pin',
-      	position : Cesium.Cartesian3.fromDegrees(-40.170726, 75.9208667),
+      	position : Cesium.Cartesian3.fromDegrees(greenlandTour[1][0], greenlandTour[1][1]),
       	billboard : {
         image : pinBuilder.fromColor(Cesium.Color.BLACK, 36).toDataURL(),
         verticalOrigin : Cesium.VerticalOrigin.BOTTOM
       	}
     	});
-
   	</script>
   
   	<div id= "menuButton">
@@ -131,7 +158,7 @@
 	  		<li> <a class="active" href="#home">Home</a></li>   
 	  		<li> <a href="#">Add Flightpath</a></li>
 	  		<li> <a href="#">Switch to Admin</a></li>
-	  		<li> <a href="#">Skoo Buffs</a></li>
+	  		<li> <a onclick="skooBuffs()" href="javascript:void(0);">Skoo Buffs</a></li>
 		</ul>
   	</div>
 
@@ -143,6 +170,9 @@
 	  		else
 				e.style.display = 'block';
 		}  
+		function skooBuffs() {
+			alert("skoo Buffs!");
+		}
   	</script>  
 
 </body>
