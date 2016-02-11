@@ -85,21 +85,17 @@
 		var extent = Cesium.Rectangle.fromDegrees(-99.240573,41.808406,20.313421,86.468825);
     	Cesium.Camera.DEFAULT_VIEW_RECTANGLE = extent;
     	Cesium.Camera.DEFAULT_VIEW_FACTOR = 0;
-
 		var viewer = new Cesium.Viewer('cesiumContainer', {
 		animation : false,
 		timeline : false,
 		});
-
 		//allows us to run our own scripts
 		viewer.infoBox.frame.removeAttribute('sandbox');
-
     	//FLIGHT PATH STUFF
 		//when next button pressed, take user to next pin
 		function flyToNextWaypoint(pin){
 			alert("TESTING BUTTON!");
 		}
-
 		//connect waypoints on map and draw a line
 		//this one is close to working
 		function drawFlightPath(waypoints){
@@ -119,11 +115,9 @@
 			return redLine;
 		}
 		//END OF FLIGHT PATH STUFF
-
 		//a series of points (in degrees) to describe waypoints in greenland
 		var greenlandTour = [[-40.170726, 70.9208667], [-40.170726, 75.9208667]];
 		drawFlightPath(greenlandTour);
-
 		// Test pin 1 for Greenland
 		var pinBuilder = new Cesium.PinBuilder();
     	var bluePin = viewer.entities.add({
@@ -134,7 +128,6 @@
         verticalOrigin : Cesium.VerticalOrigin.BOTTOM
       	} 	
     	});
-
       	var bluePinDescription = 
       		'<h1>Greenland</h1>' +
       		'<p>This is Greenland up close and personal... AKA totally white.</p>' +
@@ -176,7 +169,6 @@
 	  		else
 				e.style.display = 'block';
 		}  
-
 		function skooBuffs() {
 			alert("skoo Buffs!");
 		}
