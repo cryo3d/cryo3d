@@ -9,6 +9,7 @@
 
   	<!-- External JS Files -->
   	<script src="../Build/Cesium/Cesium.js"></script>
+  	<script src="node_modules/taffy/lib/taffy.min.js"></script>
 
   	<!-- External CSS Files -->
 	<link rel="stylesheet" type="text/css" href="CSS/menubar.css">
@@ -93,6 +94,24 @@
         verticalOrigin : Cesium.VerticalOrigin.BOTTOM
       	}
     	});
+  	</script>
+
+  	<!-- database stuff !-->
+  	<script>
+
+		var FlightPaths = {
+			"GreenlandTour":[
+				{name: "Greenland1", latitude: "-40.170726", longitude: "70.9208667"},
+				{name: "Greenland2", latitude: "-40.170726", longitude: "75.9208667"}
+			]
+		}
+
+		//Now we are going to pass in Contacts into TAFFY. And assigned to ContactsDataSource.
+		var FlightPathsDataSource = TAFFY(FlightPaths);
+
+		//For cases where you know, json data contains some sort of unique id that only return one result. 
+		//Just use first();
+		console.log(FlightPathsDataSource().distinct("GreenlandTour"));
   	</script>
   
   	<div id= "menuButton">
