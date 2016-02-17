@@ -24,9 +24,9 @@
 	  	#menuBar {
 			position: absolute;
 			z-index: 3;
-			top: 27px;
+			top: 54px;
 			left: 0px;
-			width: 13%;
+			width: 10%;
 			height: 75%;
 			overflow: no-scroll;
 			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
@@ -35,7 +35,6 @@
 			font-style: normal;
 			font-variant: normal;
 			font-weight: 500px;
-			line-height: 25px;
 	   	}
 	  	ul {
 			list-style-type: none;
@@ -72,6 +71,38 @@
 			font-variant: normal;
 			font-weight: 700px;
 			line-height: 20px;
+		}
+		.adminLoginButton {
+			position: absolute;
+			z-index: 3;
+			top: 27px;
+			background-color: transparent;
+			border: 1px solid transparent;
+			outline: none;
+			color: white;
+			text-align: center;
+			text-decoration: underline;
+			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+			font-size: 14px;
+			font-style: normal;
+			font-variant: normal;
+			font-weight: 700px;
+			line-height: 20px;
+		}
+		.modalDialog {
+			position: absolute;
+			margin: auto;
+			top: 0;
+  			right: 0;
+  			bottom: 0;
+  			left: 0;
+			z-index: 4;
+			width: 50%;
+			height: 40%;
+			background: white;
+			border: 1px solid #555555;
+			padding: 5px 0 5px 10px;
+			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 	  	}
   	</style>
 
@@ -89,15 +120,15 @@
 		animation : false,
 		timeline : false,
 		});
-		//allows us to run our own scripts
+		// Allows us to run our own scripts
 		viewer.infoBox.frame.removeAttribute('sandbox');
-    	//FLIGHT PATH STUFF
-		//when next button pressed, take user to next pin
+    	// FLIGHT PATH STUFF
+		// When next button pressed, take user to next pin
 		function flyToNextWaypoint(pin){
 			alert("TESTING BUTTON!");
 		}
-		//connect waypoints on map and draw a line
-		//this one is close to working
+		// Connect waypoints on map and draw a line
+		// This one is close to working
 		function drawFlightPath(waypoints){
 			var points = [];
 			for (var i = 0; i < waypoints.length; i++){
@@ -114,8 +145,8 @@
 			});
 			return redLine;
 		}
-		//END OF FLIGHT PATH STUFF
-		//a series of points (in degrees) to describe waypoints in greenland
+		// END OF FLIGHT PATH STUFF
+		// Series of points (in degrees) to describe waypoints in greenland
 		var greenlandTour = [[-40.170726, 70.9208667], [-40.170726, 75.9208667]];
 		drawFlightPath(greenlandTour);
 		// Test pin 1 for Greenland
@@ -149,30 +180,52 @@
     	});
   	</script>
   
-  	<div id= "menuButton">
-		<button class="menuButton" onclick="toggleMenu()"> Toggle Menu </button>
+  	<div id="menuButton">
+		<button class="menuButton" onclick="menuBarToggle()" onmouseover="menuHover()">Cryo3D Menu</button>
+		<!-- Attempt at text showing upon hover -->
+		<!-- <p id="menuHoverText" style="display:inline; color: white"></p> -->
+  	</div>
+
+  	<div id="adminButton">
+  		<button class="adminLoginButton" onclick="adminLoginToggle()">Admin? Login Here!</button>
   	</div>
 
   	<div id="menuBar">
 		<ul>
 	  		<li> <a class="active" href="#home">Home</a></li>   
-	  		<li> <a href="#">Add Flightpath</a></li>
-	  		<li> <a href="#">Switch to Admin</a></li>
-	  		<li> <a onclick="skooBuffs()" href="javascript:void(0);">Skoo Buffs</a></li>
+	  		<li> <a href="#">Waypoints</a></li>
+	  		<li> <a href="#">Flight Paths</a></li>
 		</ul>
   	</div>
 
+  	<div id="openModal" class="modalDialog" style="display:none">
+  		<h2>Admin Login</h2>
+  		<p>This is a test paragraph</p>
+  		<button onclick="adminLoginToggle()" style="position:absolute; bottom: 10px; right: 10px">Cancel</button>
+  	</div>
+
+  	<!-- TO DO: Make one general toggle function -->
   	<script type="text/javascript">  
-		function toggleMenu() {  
+		function menuBarToggle() {  
 	  		var e = document.getElementById("menuBar");
 	  		if(e.style.display == 'block')
 				e.style.display = 'none';
 	  		else
 				e.style.display = 'block';
-		}  
-		function skooBuffs() {
-			alert("skoo Buffs!");
 		}
+
+		function adminLoginToggle() {
+			var e = document.getElementById("openModal");
+	  		if(e.style.display == 'none')
+				e.style.display = 'block';
+	  		else
+				e.style.display = 'none';
+		}
+		/*
+		function menuHover() {
+			document.getElementById("menuHoverText").innerHTML="Click to toggle Menu";
+		}
+		*/
   	</script>  
 
 </body>
