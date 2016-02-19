@@ -1,0 +1,34 @@
+jsonstr = [
+  {
+    "Greenland": {
+      "Pin1": {
+          "latitude": 70.9208667,
+          "longitude": -40.170726,
+          "description": "This is Greenland up close and personal... AKA totally white. Despite its name, Greenland actually means 'Land of People.'"
+      },
+      "Pin2": {
+          "latitude": 75.9208667,
+          "longitude": -40.170726,
+          "description": "Insert description here"
+      }
+    },
+
+    "Alaska": {
+      "Anchorage": {
+          "latitude": 58.271403,
+          "longitude": -134.443284,
+          "description": "Insert description here"
+      },
+      "Juneau": {
+          "latitude": 61.195141,
+          "longitude": -149.809919,
+          "description": "Insert description here"
+      },
+      "Fairbanks": {
+        "latitude": 64.833965,
+        "longitude": -147.657242,
+        "description": "Insert description here"
+      } 
+    }  
+  }
+];

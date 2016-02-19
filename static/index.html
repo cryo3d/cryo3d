@@ -9,40 +9,36 @@
 
   	<!-- External JS Files -->
   	<script src="../Build/Cesium/Cesium.js"></script>
-  	<script src="node_modules/taffy/lib/taffy.min.js"></script>
 
   	<!-- External CSS Files -->
 	<link rel="stylesheet" type="text/css" href="CSS/menubar.css">
 
 	<title>Welcome to Cryo3D!</title>
-  
+ 
 </head>
 
 <body>
 	<div id="cesiumContainer"></div>
   
-  	<!-- TO DO: MAKE JS EXTERNAL -->    
-  	<script>
+  	<!-- TO DO: MAKE JS EXTERNAL -->     
+  	<script src="Data/FlightPaths.jsonp"></script>
+	<script type="text/javascript">
 		var extent = Cesium.Rectangle.fromDegrees(-99.240573,41.808406,20.313421,86.468825);
     	Cesium.Camera.DEFAULT_VIEW_RECTANGLE = extent;
     	Cesium.Camera.DEFAULT_VIEW_FACTOR = 0;
-
 		var viewer = new Cesium.Viewer('cesiumContainer', {
 		animation : false,
 		timeline : false,
 		});
-
-		//allows us to run our own scripts
+		// Allows us to run our own scripts
 		viewer.infoBox.frame.removeAttribute('sandbox');
-
-    	//FLIGHT PATH STUFF
-		//when next button pressed, take user to next pin
+    	// FLIGHT PATH STUFF
+		// When next button pressed, take user to next pin
 		function flyToNextWaypoint(pin){
 			alert("TESTING BUTTON!");
 		}
-
-		//connect waypoints on map and draw a line
-		//this one is close to working
+		// Connect waypoints on map and draw a line
+		// This one is close to working
 		function drawFlightPath(waypoints){
 			var points = [];
 			for (var i = 0; i < waypoints.length; i++){
@@ -58,70 +54,97 @@
 			    }
 			});
 			return redLine;
+		}	
+
+		var pinCount = 0;
+		var lastPinLat = 0;
+		var lastPinLong = 0;
+		function loadFlightPaths(){
+		    var x = 0;
+		    var flightPaths=jsonstr;
+	        var flightPathData = flightPaths[0];
+	        for(var tourName in flightPathData){
+	            var tourNameObj = flightPathData[tourName];
+	            pinCount = 0;
+	        	for(var pinName in tourNameObj){
+	        		var pinObj = tourNameObj[pinName];
+			        var latitude = pinObj["latitude"];
+			        var longitude = pinObj["longitude"];
+			        var description = pinObj["description"];
+
+					var pinBuilder = new Cesium.PinBuilder();
+			    	var pin = viewer.entities.add({
+			      	name : pinName,
+			      	position : Cesium.Cartesian3.fromDegrees(longitude, latitude),
+			      	billboard : {
+			        image : pinBuilder.fromColor(Cesium.Color.CORNFLOWERBLUE, 36).toDataURL(),
+			        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
+			      	} 	
+			    	});
+			      	pin.description = description;
+
+			      	if (pinCount != 0){
+			      		drawFlightPath([[lastPinLong, lastPinLat], [longitude, latitude]]);
+			      	}
+			      	lastPinLat = latitude;
+			      	lastPinLong = longitude;
+			      	pinCount++;
+	        	}
+	        }
 		}
-		//END OF FLIGHT PATH STUFF
 
-		//a series of points (in degrees) to describe waypoints in greenland
-		var greenlandTour = [[-40.170726, 70.9208667], [-40.170726, 75.9208667]];
-		drawFlightPath(greenlandTour);
+	  loadFlightPaths();
+	</script>
 
-		// Test pin 1 for Greenland
-		var pinBuilder = new Cesium.PinBuilder();
-    	var bluePin = viewer.entities.add({
-      	name : 'Blank blue pin',
-      	position : Cesium.Cartesian3.fromDegrees(greenlandTour[0][0], greenlandTour[0][1]),
-      	billboard : {
-        image : pinBuilder.fromColor(Cesium.Color.CORNFLOWERBLUE, 36).toDataURL(),
-        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
-      	} 	
-    	});
+  	<div id="menuButton">
+		<button class="menuButton" onclick="menuBarToggle()" onmouseover="menuHover()">Cryo3D Menu</button>
+		<!-- Attempt at text showing upon hover -->
+		<!-- <p id="menuHoverText" style="display:inline; color: white"></p> -->
+  	</div>
 
-      	var bluePinDescription = 
-      		'<h1>Greenland</h1>' +
-      		'<p>This is Greenland up close and personal... AKA totally white.</p>' +
-      		'<p>Despite its name, Greenland actually means "Land of People."</p>' +
-      		'<br>' +
-      		'<img src="Images/greenlandmap.jpg" alt="Greenland Map" style="width:250px;height:400px;">' + 
-      		'<input id="clickMe" type="button" value="Next waypoint" onclick="flyToNextWaypoint();" />'; //not working because cesium entities are sandboxed, js blocked to prevent XSS
-      	bluePin.description = bluePinDescription;
-    	
-    	// Test pin 2 for Greenland
-    	var blackPin = viewer.entities.add({
-      	name : 'Blank black pin',
-      	position : Cesium.Cartesian3.fromDegrees(greenlandTour[1][0], greenlandTour[1][1]),
-      	billboard : {
-        image : pinBuilder.fromColor(Cesium.Color.BLACK, 36).toDataURL(),
-        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
-      	}
-    	});
-  	</script>
-
-  	<div id= "menuButton">
-		<button class="menuButton" onclick="toggleMenu()"> Toggle Menu </button>
+  	<div id="adminButton">
+  		<button class="adminLoginButton" onclick="adminLoginToggle()">Admin? Login Here!</button>
   	</div>
 
   	<div id="menuBar">
 		<ul>
 	  		<li> <a class="active" href="#home">Home</a></li>   
-	  		<li> <a href="#">Add Flightpath</a></li>
-	  		<li> <a href="#">Switch to Admin</a></li>
-	  		<li> <a onclick="skooBuffs()" href="javascript:void(0);">Skoo Buffs</a></li>
+	  		<li> <a href="#">Waypoints</a></li>
+	  		<li> <a href="#">Flight Paths</a></li>
 		</ul>
   	</div>
 
+  	<div id="openModal" class="modalDialog" style="display:none">
+  		<h2>Admin Login</h2>
+  		<p>This is a test paragraph</p>
+  		<button onclick="adminLoginToggle()" style="position:absolute; bottom: 10px; right: 10px">Cancel</button>
+  	</div>
+
+  	<!-- TO DO: Make one general toggle function -->
   	<script type="text/javascript">  
-		function toggleMenu() {  
+		function menuBarToggle() {  
 	  		var e = document.getElementById("menuBar");
 	  		if(e.style.display == 'block')
 				e.style.display = 'none';
 	  		else
 				e.style.display = 'block';
-		}  
-
-		function skooBuffs() {
-			alert("skoo Buffs!");
 		}
+
+		function adminLoginToggle() {
+			var e = document.getElementById("openModal");
+	  		if(e.style.display == 'none')
+				e.style.display = 'block';
+	  		else
+				e.style.display = 'none';
+		}
+		/*
+		function menuHover() {
+			document.getElementById("menuHoverText").innerHTML="Click to toggle Menu";
+		}
+		*/
   	</script>  
+
+
 
 </body>
 
