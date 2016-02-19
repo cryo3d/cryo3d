@@ -20,7 +20,9 @@
 <body>
 	<div id="cesiumContainer"></div>
   
-  	<!-- TO DO: MAKE JS EXTERNAL -->     
+  	<!-- TO DO: MAKE JS EXTERNAL 
+    making some of the scripts external may break other scripts that
+	rely on them being loaded first-->     
   	<script src="Data/FlightPaths.jsonp"></script>
 	<script type="text/javascript">
 		var extent = Cesium.Rectangle.fromDegrees(-99.240573,41.808406,20.313421,86.468825);
@@ -30,15 +32,11 @@
 		animation : false,
 		timeline : false,
 		});
-		// Allows us to run our own scripts
+		
+		/* Allows us to run our own custom scripts */
 		viewer.infoBox.frame.removeAttribute('sandbox');
-    	// FLIGHT PATH STUFF
-		// When next button pressed, take user to next pin
-		function flyToNextWaypoint(pin){
-			alert("TESTING BUTTON!");
-		}
-		// Connect waypoints on map and draw a line
-		// This one is close to working
+
+		/* Connect 2 waypoints on map and draw a line */
 		function drawFlightPath(waypoints){
 			var points = [];
 			for (var i = 0; i < waypoints.length; i++){
@@ -50,12 +48,15 @@
 			    polyline : {
 			        positions : Cesium.Cartesian3.fromDegreesArray(points),
 			        width : 3,
-			        material : Cesium.Color.RED
+			        material : Cesium.Color.YELLOW
 			    }
 			});
 			return redLine;
 		}	
 
+		/* Reads flightpath info from json and populates globe with waypoints and flightpaths */
+		/* TO DO: instead of displaying all of them on the globe at once, have dropdown list of
+		tours to choose from and display specific flight path when selected */
 		var pinCount = 0;
 		var lastPinLat = 0;
 		var lastPinLong = 0;
@@ -109,6 +110,8 @@
   	<div id="menuBar">
 		<ul>
 	  		<li> <a class="active" href="#home">Home</a></li>   
+	  		<!-- TO DO: Have way to add waypoints by making GET requests with PHP and
+	  		append to the FlightPaths.jsonp file -->
 	  		<li> <a href="#">Waypoints</a></li>
 	  		<li> <a href="#">Flight Paths</a></li>
 		</ul>
