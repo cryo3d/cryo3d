@@ -2,11 +2,16 @@ jsonstr = [
   {
     "Greenland": {
       "Pin1": {
+          "latitude": 66.9208667,
+          "longitude": -43.170726,
+          "description": "This is Greenland up close and personal... AKA totally white. Despite its name, Greenland actually means 'Land of People.'"
+      },    
+      "Pin2": {
           "latitude": 70.9208667,
           "longitude": -40.170726,
-          "description": "This is Greenland up close and personal... AKA totally white. Despite its name, Greenland actually means 'Land of People.'"
+          "description": "Insert description here"
       },
-      "Pin2": {
+      "Pin3": {
           "latitude": 75.9208667,
           "longitude": -40.170726,
           "description": "Insert description here"
