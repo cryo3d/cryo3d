@@ -112,8 +112,8 @@
 	  		<li> <a class="active" href="#home">Home</a></li>   
 	  		<!-- TO DO: Have way to add waypoints by making GET requests with PHP and
 	  		append to the FlightPaths.jsonp file -->
-	  		<li> <a href="#">Waypoints</a></li>
-	  		<li> <a href="#">Flight Paths</a></li>
+	  		<li> <a id="waypoints" href="#">Waypoints</a></li>
+	  		<li> <a id="flightpaths" href="#">Flight Paths</a></li>
 		</ul>
   	</div>
 
@@ -147,7 +147,24 @@
 		*/
   	</script>  
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  	<script>
+		var e2 = document.getElementById('flightpaths');
+		e2.onclick = test;
 
+		function test(){
+		    $.ajax({
+			    url: 'addFlightPath.php',
+			    error: function (xhr, status, error) {
+			        // executed if something went wrong during call
+			        if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
+			    },
+			    success: function() {
+               		 alert("blarg");
+               	}
+			});
+		}
+  	</script>
 
 </body>
 
