@@ -1,0 +1,90 @@
+@import url(../Build/Cesium/Widgets/widgets.css);
+		html, body, #cesiumContainer {
+		width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+		position: absolute;
+		z-index: 1;
+	  	}
+	  	
+	  	#menuBar {
+			position: absolute;
+			z-index: 3;
+			top: 54px;
+			left: 0px;
+			width: 10%;
+			height: 75%;
+			overflow: no-scroll;
+			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+			font-size: 16px;
+			font-size: 1.5vw;
+			font-style: normal;
+			font-variant: normal;
+			font-weight: 500px;
+	   	}
+	  	ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			width: 200px;
+			background-color: #f1f1f1;
+	  	} 
+	  	li a {
+			display: block;
+			color: #000000;
+			padding: 5px 0 5px 10px;
+			text-decoration: none;
+	  	}
+	  	li a.active {
+			background-color: #6495ED;
+			color: white;
+	  	}
+	  	li a:hover:not(.active) {
+			background-color: #363636;
+			color: white;
+	  	}
+	  	.menuButton {
+			position: absolute;
+			z-index: 3;
+			background-color: #363636;
+			border: 1px solid #555555;
+			outline: none;
+			color: white;
+			text-align: center;
+			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+			font-size: 16px;
+			font-style: normal;
+			font-variant: normal;
+			font-weight: 700px;
+			line-height: 20px;
+		}
+		.adminLoginButton {
+			position: absolute;
+			z-index: 3;
+			top: 27px;
+			background-color: transparent;
+			border: 1px solid transparent;
+			outline: none;
+			color: white;
+			text-align: center;
+			text-decoration: underline;
+			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+			font-size: 14px;
+			font-style: normal;
+			font-variant: normal;
+			font-weight: 700px;
+			line-height: 20px;
+		}
+		.modalDialog {
+			position: absolute;
+			margin: auto;
+			top: 0;
+  			right: 0;
+  			bottom: 0;
+  			left: 0;
+			z-index: 4;
+			width: 50%;
+			height: 40%;
+			background: white;
+			border: 1px solid #555555;
+			padding: 5px 0 5px 10px;
+			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	  	}
