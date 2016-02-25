@@ -11,15 +11,29 @@ docker pull sameersbn/mysql;
 echo "Building the Docker image..."
 docker build -t some-content-nginx .;
 
-echo "Exposing port 8080 and running Docker image on Local Host"
+
+echo "Running sameersbn/mysql image and configuring the environment"
+docker run \
+    -d \
+    -v /var/lib/mysql \
+    -e "DB_NAME=demoDb" \
+    -e "DB_USER=demoUser" \
+    -e "DB_PASS=demoPass" \
+    --name mysql \
+    sameersbn/mysql;
+
+echo "Running nmcteam/php56 image and linking up to mysql database"
 docker run \
     -d \
     -p 9000:9000 \
     -v $(pwd)/php-fpm.conf:/etc/php5/fpm/php-fpm.conf \
     -v $(pwd):/var/www \
+    --link mysql \
     --name php \
     nmcteam/php56;
 
+echo "Running some-content-nginx image, linking php and mysql,"
+echo "and exposing Docker container's port 80 to localhost's port 8080"
 docker run \
     -d \
     -p 8080:80 \
