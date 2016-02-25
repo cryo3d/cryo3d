@@ -8,6 +8,6 @@ echo "Building the Docker image..."
 docker build -t some-content-nginx .;
 
 echo "Exposing port 8080 and running Docker image on Local Host"
-docker run --name some-nginx -d -p 8080:80 some-content-nginx;
+docker-compose up -d
 
 echo "You may now navigate to Local Host 8080"
