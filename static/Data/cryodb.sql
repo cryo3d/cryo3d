@@ -21,7 +21,7 @@ create database cryodb;
 
 use cryodb;
 
-drop table if exists flightpath;
+drop table if exists flightpathEntry;
 drop table if exists waypoint;
 
 create table waypoint
