@@ -21,7 +21,7 @@ docker run \
     -e "DB_NAME=demoDb" \
     -e "DB_USER=demoUser" \
     -e "DB_PASS=demoPass" \
-    --name mysql \
+    --name db \
     sameersbn/mysql;
 
 echo "Running nmcteam/php56 image and linking up to mysql database"
@@ -30,7 +30,7 @@ docker run \
     -p 9000:9000 \
     -v $(pwd)/php-fpm.conf:/etc/php5/fpm/php-fpm.conf \
     -v $(pwd):/var/www \
-    --link mysql \
+    --link db \
     --name php \
     nmcteam/php56;
 

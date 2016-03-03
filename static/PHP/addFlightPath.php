@@ -1,6 +1,6 @@
 <?php
 $pdo = new \PDO(
-    'mysql:host=db;dbname=cryodb',
+    'mysql:host=db;dbname=flightPaths',
     'user',
     'pass'
 );

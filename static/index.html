@@ -9,7 +9,6 @@
 
   	<!-- External JS Files -->
   	<script src="../Build/Cesium/Cesium.js"></script>
-  	<script src="../Javascript/cryocode.js"></script>
 
   	<!-- External CSS Files -->
 	<link rel="stylesheet" type="text/css" href="CSS/menubar.css">
@@ -21,20 +20,21 @@
 <body>
 	<div id="cesiumContainer"></div>
   
-
   	<!-- TO DO: MAKE JS EXTERNAL 
     making some of the scripts external may break other scripts that
 	rely on them being loaded first-->     
   	<script src="Data/FlightPaths.jsonp"></script>
-  	<script src="Javascript/cryocode.js"></script>
 	<script type="text/javascript">
+		var extent = Cesium.Rectangle.fromDegrees(-99.240573,41.808406,20.313421,86.468825);
+    	Cesium.Camera.DEFAULT_VIEW_RECTANGLE = extent;
+    	Cesium.Camera.DEFAULT_VIEW_FACTOR = 0;
+		var viewer = new Cesium.Viewer('cesiumContainer', {
+		animation : false,
+		timeline : false,
+		});
 		
-
-		var viewer = initViewer();
-
-		console.log("timeline is: " + viewer.timeline);
-		
-		
+		/* Allows us to run our own custom scripts */
+		viewer.infoBox.frame.removeAttribute('sandbox');
 
 		/* Connect 2 waypoints on map and draw a line */
 		function drawFlightPath(waypoints){
@@ -123,6 +123,27 @@
   		<button onclick="adminLoginToggle()" style="position:absolute; bottom: 10px; right: 10px">Cancel</button>
   	</div>
 
+  	<div id="flightPathModal" class="modalDialog" style="display:none">
+  		<h2>Edit existing flight path</h2>
+  		<p>Here you can update or delete an existing flight path</p>
+  		<!-- Have dropdown list be populated by SQL query-->
+  		<select>
+		  <option value="1">Alaska</option>
+		  <option value="2">Greenland</option>
+		</select>
+
+		<h2>Create new flight path</h2>
+  		<p>Here you can add a new flight path</p>
+  		<!-- Have dropdown list be populated by SQL query-->
+  		<form>
+  			Tour Name:&nbsp
+  			<input type="text"></input>
+  		<form>
+
+
+  		<button onclick="flightPathModalToggle()" style="position:absolute; bottom: 10px; right: 10px">Cancel</button>
+  	</div>  	
+
   	<!-- TO DO: Make one general toggle function -->
   	<script type="text/javascript">  
 		function menuBarToggle() {  
@@ -140,6 +161,14 @@
 	  		else
 				e.style.display = 'none';
 		}
+
+		function flightPathModalToggle() {
+			var e = document.getElementById("flightPathModal");
+	  		if(e.style.display == 'none')
+				e.style.display = 'block';
+	  		else
+				e.style.display = 'none';
+		}		
 		/*
 		function menuHover() {
 			document.getElementById("menuHoverText").innerHTML="Click to toggle Menu";
@@ -150,11 +179,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   	<script>
 		var e2 = document.getElementById('flightpaths');
-		e2.onclick = test;
+		//e2.onclick = test;
+		e2.onclick = flightPathModalToggle;
 
 		function test(){
 		    $.ajax({
-			    url: 'addFlightPath.php',
+			    url: 'PHP/addFlightPath.php',
 			    error: function (xhr, status, error) {
 			        // executed if something went wrong during call
 			        if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
