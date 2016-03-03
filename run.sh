@@ -10,9 +10,6 @@ echo "Pulling down php and mysql docker images"
 docker pull nmcteam/php56;
 docker pull sameersbn/mysql;
 
-echo "Building the Docker image..."
-docker build -t some-content-nginx .;
-
 
 echo "Running sameersbn/mysql image and configuring the environment"
 docker run \
@@ -36,13 +33,25 @@ docker run \
 
 echo "Running some-content-nginx image, linking php and mysql,"
 echo "and exposing Docker container's port 80 to localhost's port 8080"
+
+echo "Building the Docker image..."
+docker build -t some-content-nginx .;
+
 docker run \
     -d \
+    --add-host docker.dev:192.168.99.100 \
     -p 8080:80 \
     -v $(pwd)/vhost.conf:/etc/nginx/sites-enabled/vhost.conf \
     -v $(pwd):/var/www \
     --link php \
     --name web \
     some-content-nginx;
+
+#This line starts the nginx service eventhough it should already be running,
+#fixes problems for Windows users
+#Note: the -l flag grabs the last docker container, if you add more containers
+#add them after this line
+docker exec -it $(docker ps -l --format "{{.ID}}") bash service nginx start    
+
 
 echo "You may now navigate to Local Host 8080"

@@ -40,6 +40,16 @@ $ git pull upstream name_of_banch
 ```
 **Make sure to checkout a new branch (on your own fork) with each major story/feature**
 
+When you're done with a feature and ready to push follow the following commands:
+```
+$ git status						Shows all the changes made
+$ git add --all 					Add all your changes
+$ git commit "describe what you did"
+$ git push origin branch_name  		This pushes to your fork
+$ git push upstream branch_name 	This pushes to upstream
+
+```
+
 ####Docker
 Install Docker.  Reference Docker's setup instructions [here](http://docs.docker.com/windows/started/).  Links to help with all OS's can be found from this page.
 
