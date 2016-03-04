@@ -1,13 +1,26 @@
 function showEditFlightPathModal(){
-	document.getElementById("flightPathModal").innerHTML = "Edit stuff!";
+	flightPathDropDownList = jQuery.ajax({
+	    url: "../PHP/populateTourNameList.php",
+	    type: "GET",
+	});
+	flightPathDropDownList.always(function(){
+	    $('#flightPathModal').html(flightPathDropDownList.responseText);
+	});
 }
 function showAddFlightPathModal(){
-	document.getElementById("flightPathModal").innerHTML = "Add stuff!";
+	document.getElementById("flightPathModal").innerHTML =  '<center><h2>Pick a tour name:</h2><br><br>' +
+															'<input class="textForm" type="text">' +
+															'</button>' +
+															'<button onclick="" class="flightPathModalButton" style"height:25px">' +
+															'OK</button></center>';
 }
 
 function flightPathModalToggle() {
 	var e = document.getElementById("flightPathModal");
-	e.innerHTML = '<button onclick="showEditFlightPathModal()" class="flightPathModalButton">Edit Flight Path</button><button onclick="showAddFlightPathModal()" class="flightPathModalButton">Add Flight Path</button>';
+	e.innerHTML = '<button onclick="showEditFlightPathModal()" class="flightPathModalButton">' +
+					'Edit Flight Path' +
+					'</button><button onclick="showAddFlightPathModal()" class="flightPathModalButton">' +
+					'Add Flight Path</button>';
 		if(e.style.display == 'none')
 		e.style.display = 'block';
 		else
