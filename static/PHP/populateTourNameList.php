@@ -8,4 +8,5 @@ echo "<option value=\"owner1\">" . $row['flightpath_name'] . "</option>";
 }
 ?>
 </select>
+<button onclick="" class="flightPathModalButton" style"height:25px">OK</button>
 </center>
