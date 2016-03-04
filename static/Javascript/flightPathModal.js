@@ -18,9 +18,9 @@ function showAddFlightPathModal(){
 function flightPathModalToggle() {
 	var e = document.getElementById("flightPathModal");
 	e.innerHTML = '<button onclick="showEditFlightPathModal()" class="flightPathModalButton">' +
-					'Edit Flight Path' +
+					'Edit Existing Flight Path' +
 					'</button><button onclick="showAddFlightPathModal()" class="flightPathModalButton">' +
-					'Add Flight Path</button>';
+					'Add New Flight Path</button>';
 		if(e.style.display == 'none')
 		e.style.display = 'block';
 		else
