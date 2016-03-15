@@ -1,5 +1,3 @@
-
-
 echo "Stopping all Docker containers..."
 docker stop $(docker ps -a -q);
 
@@ -10,14 +8,15 @@ echo "Pulling down php and mysql docker images"
 docker pull nmcteam/php56;
 docker pull sameersbn/mysql;
 
-
 echo "Running sameersbn/mysql image and configuring the environment"
 docker run \
     -d \
     -v /var/lib/mysql \
-    -e "DB_NAME=demoDb" \
-    -e "DB_USER=demoUser" \
-    -e "DB_PASS=demoPass" \
+    -e "DB_NAME=cryodb" \
+    -e "DB_USER=user" \
+    -e "DB_PASS=pass" \
+    -e "DB_REMOTE_ROOT_NAME=root" \
+    -e "DB_REMOTE_ROOT_PASS=pass" \
     --name db \
     sameersbn/mysql;
 
@@ -47,11 +46,12 @@ docker run \
     --name web \
     some-content-nginx;
 
-#This line starts the nginx service eventhough it should already be running,
-#fixes problems for Windows users
-#Note: the -l flag grabs the last docker container, if you add more containers
-#add them after this line
-docker exec -it $(docker ps -l --format "{{.ID}}") bash service nginx start    
+docker exec -it db sudo sh -c "echo 'mysqld: ALL' >> /etc/hosts.allow"
+docker exec -it db sh -c "sed -i '47s/.*/#bind-address=0.0.0.0/' /etc/mysql/my.cnf"
+docker exec -it db /etc/init.d/mysql start
 
+#This line starts the nginx service eventhough it should already be running,
+#fixes problems for Windows users  
+docker exec -it web bash service nginx start
 
 echo "You may now navigate to Local Host 8080"

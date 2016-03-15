@@ -23,6 +23,8 @@ db:
   volumes:
    - /var/lib/mysql
   environment:
-   - DB_NAME=demoDb
-   - DB_USER=demoUser
-   - DB_PASS=demoPass
+   - DB_NAME=cryodb
+   - DB_USER=user
+   - DB_PASS=pass
+  ports:
+   - "3306:3306"
