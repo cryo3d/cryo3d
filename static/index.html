@@ -18,7 +18,7 @@
 	<div id="cesiumContainer"></div>
 
   	<div id="menuButton">
-		<button class="menuButton" onclick="menuBarToggle()" onmouseover="menuHover()">Cryo3D Menu</button>
+		<button class="menuButton" onclick="menuBarToggle()" onmouseover="menuHover()">Cryo3D</button>
 		<!-- Attempt at text showing upon hover -->
 		<!-- <p id="menuHoverText" style="display:inline; color: white"></p> -->
   	</div>
@@ -38,21 +38,39 @@
   	</div>
 
   	<div id="openModal" class="modalDialog" style="display:none">
-  		<h2>Admin Login</h2>
-  		<p>This is a test paragraph</p>
-  		<button onclick="adminLoginToggle()" style="position:absolute; bottom: 10px; right: 10px">Cancel</button>
+        <h2>Admin Login</h2>
+        <p>Login with your NSIDC e-mail and password to gain administrative access.</p>
+        <!-- <form id="adminForm" onsubmit="adminFunctionality()"> -->
+        <form id="adminForm">
+            E-mail:<br>
+            <!-- TO DO: Get regex working for e-mail validation -->
+            <input type="text" name="adminEmail" placeholder="youremail@nsidc.com" pattern="[a-zA-Z0-9_-.]+@nsidc\.com">
+            <br>
+            <br>
+            Password:<br>
+            <input type="text" name="adminPassword" placeholder="password">
+            <input type="submit" style="position:absolute; bottom: 10px; right: 70px">
+        </form>
+        <button onclick="adminLoginToggle()" style="position:absolute; bottom: 10px; right: 10px">Cancel</button>
   	</div>
 
   	<div id="flightPathModal" class="modalDialog" style="display:none; padding:0px;"></div>  	
 
   	<!-- External JS Files -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> <!-- allows us to call php scripts !-->
-  	<script src="../Build/Cesium/Cesium.js"></script>  <!-- core Cesium JS functionality !-->
-  	<script src="Javascript/initView.js"></script> <!-- instantiates cesium viewer and draws things we want loaded immediately !-->
+	
+    <!-- Allows us to call php scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  	<!-- Core Cesium JS functionality -->
+    <script src="../Build/Cesium/Cesium.js"></script>
+  	<!-- Instantiates cesium viewer and draws things we want loaded immediately -->
+    <script src="Javascript/initView.js"></script>
   	<script src="Data/FlightPaths.jsonp"></script>
-  	<script src="Javascript/flightPathModal.js"></script>  <!-- functions for the flightPathModal !-->
-  	<script src="Javascript/menubar.js"></script>  <!-- menubar toggle/hover functions !-->
-  	<script src="Javascript/database.js"></script>  <!-- javascript that makes ajax call to php to intialize db !-->
+  	<!-- Functions for flightPathModal -->
+    <script src="Javascript/flightPathModal.js"></script>
+  	<!-- Functions for menubar toggle/hover -->
+    <script src="Javascript/menubar.js"></script>
+  	<!-- javascript that makes ajax call to php to intialize db -->
+    <script src="Javascript/database.js"></script>
 
 </body>
 </html>

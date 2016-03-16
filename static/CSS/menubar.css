@@ -5,32 +5,32 @@
 		z-index: 1;
 	  	}
 	  	
-	  	#menuBar {
+#menuBar {
 			position: absolute;
 			z-index: 3;
-			top: 54px;
+			top: 56px;
 			left: 0px;
-			width: 10%;
+			width: 13%;
 			height: 75%;
 			overflow: no-scroll;
 			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
-			font-size: 16px;
+			font-size: 14px;
 			font-size: 1.5vw;
 			font-style: normal;
 			font-variant: normal;
-			font-weight: 500px;
 	   	}
 	  	ul {
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
-			width: 200px;
-			background-color: #f1f1f1;
+			width: 150px;
+			background-color:transparent;
 	  	} 
 	  	li a {
 			display: block;
-			color: #000000;
-			padding: 5px 0 5px 10px;
+			background-color: #000000;
+			color: white;
+			padding: 5px 5px 5px 10px;
 			text-decoration: none;
 	  	}
 	  	li a.active {
@@ -38,28 +38,29 @@
 			color: white;
 	  	}
 	  	li a:hover:not(.active) {
-			background-color: #363636;
-			color: white;
+			background-color: #ffffff;
+			color: #6495ED;
+			font-weight: bold;
 	  	}
 	  	.menuButton {
 			position: absolute;
-			z-index: 3;
-			background-color: #363636;
-			border: 1px solid #555555;
+			z-index: 4;
+			background-color: transparent;
+			border: none;
 			outline: none;
 			color: white;
 			text-align: center;
 			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
-			font-size: 16px;
-			font-style: normal;
-			font-variant: normal;
+			font-size: 35px;
+			font-weight: bold;
+			letter-spacing: -3px;
 			font-weight: 700px;
-			line-height: 20px;
+			line-height: 40px;
 		}
 		.adminLoginButton {
 			position: absolute;
 			z-index: 3;
-			top: 27px;
+			top: 35px;
 			background-color: transparent;
 			border: 1px solid transparent;
 			outline: none;
@@ -67,10 +68,9 @@
 			text-align: center;
 			text-decoration: underline;
 			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
-			font-size: 14px;
+			font-size: 12px;
 			font-style: normal;
 			font-variant: normal;
-			font-weight: 700px;
 			line-height: 20px;
 		}
 		.modalDialog {
@@ -93,6 +93,7 @@
 		    border: none;
 		    color: white;
 		    display: inline-block;
+		    padding: 0px;
 	  		font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 			font-size: 30px;
 			border: 1px solid white;
