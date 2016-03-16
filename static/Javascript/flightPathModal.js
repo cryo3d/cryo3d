@@ -7,11 +7,29 @@ function showEditFlightPathModal(){
 	    $('#flightPathModal').html(flightPathDropDownList.responseText);
 	});
 }
+
+function insertNewTourName(){
+	var name = document.getElementById("tourName").value;
+
+    $.ajax({
+    url: 'PHP/insertNewTourName.php',
+    type: "get", //send it through get method
+ 	data:{tourName: name},
+    error: function (xhr, status, error) {
+        // executed if something went wrong during call
+        if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
+    },
+    success: function() {
+   		 //alert("No errors");
+   	}
+});
+}
+
 function showAddFlightPathModal(){
 	document.getElementById("flightPathModal").innerHTML =  '<center><h2>Pick a tour name:</h2><br><br>' +
-															'<input class="textForm" type="text">' +
+															'<input id="tourName" class="textForm" type="text">' +
 															'</button>' +
-															'<button onclick="" class="flightPathModalButton" style"height:25px">' +
+															'<button onclick="insertNewTourName()" class="flightPathModalButton" style"height:25px">' +
 															'OK</button></center>';
 }
 
