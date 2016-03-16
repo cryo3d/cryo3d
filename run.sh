@@ -1,3 +1,8 @@
+#Dump data from mysql before killing all of the containers
+#Helps keep data persistent
+docker exec -it db sudo sh -c "mysqldump cryodb > /var/lib/mysql/cryodb.sql"
+docker cp db:/var/lib/mysql/cryodb.sql ./static/Data/cryodb.sql
+
 echo "Stopping all Docker containers..."
 docker stop $(docker ps -a -q);
 
@@ -31,7 +36,7 @@ docker run \
     nmcteam/php56;
 
 echo "Running some-content-nginx image, linking php and mysql,"
-echo "and exposing Docker container's port 80 to localhost's port 8080"
+echo "and exposing Docker container's port 80 to dockerhost's port 8080"
 
 echo "Building the Docker image..."
 docker build -t some-content-nginx .;
@@ -46,12 +51,16 @@ docker run \
     --name web \
     some-content-nginx;
 
-docker exec -it db sudo sh -c "echo 'mysqld: ALL' >> /etc/hosts.allow"
-docker exec -it db sh -c "sed -i '47s/.*/#bind-address=0.0.0.0/' /etc/mysql/my.cnf"
+
+docker cp ./static/Data/cryodb.sql db:/var/lib/mysql/cryodb.sql
+
+#Assures that the mysql server starts before we try to restore it
 docker exec -it db /etc/init.d/mysql start
 
-#This line starts the nginx service eventhough it should already be running,
-#fixes problems for Windows users  
+#Restoring mysql database with backedup data
+docker exec db /bin/sh -c "mysql cryodb < /var/lib/mysql/cryodb.sql"
+
+#Starts the nginx service, fixes problems for Windows users  
 docker exec -it web bash service nginx start
 
-echo "You may now navigate to Local Host 8080"
+echo "You may now navigate to docker host 8080"
