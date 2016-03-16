@@ -12,4 +12,4 @@ function initDatabase(){
 		}
 			
 
-initDatabase(); //makes ajax call to php script that initializes the database
+//initDatabase(); //makes ajax call to php script that initializes the database

@@ -1,3 +1,6 @@
+docker exec -it db sudo sh -c "mysqldump cryodb > /var/lib/mysql/cryodb.sql"
+docker cp db:/var/lib/mysql/cryodb.sql ./static/Data/cryodb.sql
+
 echo "Stopping all Docker containers..."
 docker stop $(docker ps -a -q);
 
@@ -46,9 +49,11 @@ docker run \
     --name web \
     some-content-nginx;
 
-docker exec -it db sudo sh -c "echo 'mysqld: ALL' >> /etc/hosts.allow"
-docker exec -it db sh -c "sed -i '47s/.*/#bind-address=0.0.0.0/' /etc/mysql/my.cnf"
-docker exec -it db /etc/init.d/mysql start
+docker cp ./static/Data/cryodb.sql db:/var/lib/mysql/cryodb.sql
+echo 'Run "mysql cryodb < /var/lib/mysql/cryodb.sql" in the prompt below, then exit'
+#docker exec -it db /bin/bash; mysql cryodb < /var/lib/mysql/cryodb.sql
+#docker exec -it db echo "mysql cryodb < /var/lib/mysql/cryodb.sql" | /bin/bash
+docker exec -it db /bin/bash
 
 #This line starts the nginx service eventhough it should already be running,
 #fixes problems for Windows users  
