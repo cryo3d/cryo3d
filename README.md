@@ -42,11 +42,11 @@ $ git pull upstream name_of_banch
 
 When you're done with a feature and ready to push follow the following commands:
 ```
-$ git status							// Shows all the changes made
-$ git add --all 						// Add all your changes
-$ git commit "describe what you did"
-$ git push origin branch_name  			// This pushes to your fork
-$ git push upstream branch_name 		// This pushes to upstream
+$ git status								// Shows all the changes made
+$ git add --all 							// Add all your changes
+$ git commit -m "describe what you did"
+$ git push origin branch_name  				// This pushes to your fork
+$ git push upstream branch_name 			// This pushes to upstream
 
 ```
 
