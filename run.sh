@@ -1,70 +1,31 @@
-#Dump data from mysql before killing all of the containers
-#Helps keep data persistent
+if [ "$#" -ne 1 ]; then
+   echo "USAGE:
+    -r          refresh your database to the original skeleton,
+                or if you need to initialize the database
+                in the first place. You probably want to use this
+                one.
 
-#If you get an error "cryodb database not found", comment these next two lines.
-#Run the script, uncomment these lines, run "cat db_backup.sql > static/Data/cryodo.sql"
-#and run the script again
-docker exec -it db sudo sh -c "mysqldump cryodb > /var/lib/mysql/cryodb.sql"
-docker cp db:/var/lib/mysql/cryodb.sql ./static/Data/cryodb.sql
+    -p          force your database data to be persistent, only run
+                this is you've used the -a flag beforehand
 
-echo "Stopping all Docker containers..."
-docker stop $(docker ps -a -q);
+    -t          don't back up any changes made to the database, good
+                for testing";
+else
+    if [ $1 == "-r" ]; then
+        cat db_skeleton.sql > static/Data/cryodb.sql
+        helper_scripts/docker_commands.sh
+        helper_scripts/restore_db.sh
+        echo "You may now navigate to docker host 8080"
+    elif [ $1 == "-p" ]; then
+        helper_scripts/backup_db.sh
+        helper_scripts/docker_commands.sh
+        helper_scripts/restore_db.sh
+        echo "You may now navigate to docker host 8080"
+    elif [ $1 == "-t" ]; then
+        cat db_backup.sql > static/Data/cryodb.sql
+        helper_scripts/docker_commands.sh
+        helper_scripts/restore_db.sh
+        echo "You may now navigate to docker host 8080"
+    fi
+fi
 
-echo "Removing all Docker containers..."
-docker rm $(docker ps -a -q);
-
-echo "Pulling down php and mysql docker images"
-docker pull nmcteam/php56;
-docker pull sameersbn/mysql;
-
-echo "Running sameersbn/mysql image and configuring the environment"
-docker run \
-    -d \
-    -v /var/lib/mysql \
-    -e "DB_NAME=cryodb" \
-    -e "DB_USER=user" \
-    -e "DB_PASS=pass" \
-    -e "DB_REMOTE_ROOT_NAME=root" \
-    -e "DB_REMOTE_ROOT_PASS=pass" \
-    --name db \
-    sameersbn/mysql;
-
-echo "Running nmcteam/php56 image and linking up to mysql database"
-docker run \
-    -d \
-    -p 9000:9000 \
-    -v $(pwd)/php-fpm.conf:/etc/php5/fpm/php-fpm.conf \
-    -v $(pwd):/var/www \
-    --link db \
-    --name php \
-    nmcteam/php56;
-
-echo "Running some-content-nginx image, linking php and mysql,"
-echo "and exposing Docker container's port 80 to dockerhost's port 8080"
-
-echo "Building the Docker image..."
-docker build -t some-content-nginx .;
-
-docker run \
-    -d \
-    --add-host docker.dev:192.168.99.100 \
-    -p 8080:80 \
-    -v $(pwd)/vhost.conf:/etc/nginx/sites-enabled/vhost.conf \
-    -v $(pwd):/var/www \
-    --link php \
-    --name web \
-    some-content-nginx;
-
-
-docker cp ./static/Data/cryodb.sql db:/var/lib/mysql/cryodb.sql
-
-#Assures that the mysql server starts before we try to restore it
-docker exec -it db /etc/init.d/mysql start
-
-#Restoring mysql database with backedup data
-docker exec db /bin/sh -c "mysql cryodb < /var/lib/mysql/cryodb.sql"
-
-#Starts the nginx service, fixes problems for Windows users  
-docker exec -it web bash service nginx start
-
-echo "You may now navigate to docker host 8080"
