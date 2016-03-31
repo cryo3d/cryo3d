@@ -24,7 +24,7 @@ $.getScript('../Build/Cesium/Cesium.js', function(){
 
 	blackMarble.alpha = 0.5; // 0.0 is transparent.  1.0 is opaque.
 */
-    var provider = new Cesium.WebMapTileServiceImageryProvider({
+    var provider = layers.addImageryProvider(new Cesium.WebMapTileServiceImageryProvider({
         url: "//map1.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi?" + "time === 0",
         layer: "MODIS_Terra_CorrectedReflectance_TrueColor",
         style: "",
@@ -34,9 +34,9 @@ $.getScript('../Build/Cesium/Cesium.js', function(){
         tileWidth: 256,
         tileHeight: 256,
         tilingScheme: gibs.GeographicTilingScheme()
-    });
+    }));
 
-    layers.addImageryProvider(provider);
+    provider.alpha = 0.5;
 
 	/* Allows us to run our own custom scripts */
 	viewer.infoBox.frame.removeAttribute('sandbox');	
