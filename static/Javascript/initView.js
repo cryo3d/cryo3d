@@ -34,25 +34,48 @@ $.getScript('../Build/Cesium/Cesium.js', function(){
 		return redLine;
 	}	
 
-	/* Reads flightpath info from json and populates globe with waypoints and flightpaths */
-	/* TO DO: instead of displaying all of them on the globe at once, have dropdown list of
-	tours to choose from and display specific flight path when selected */
-	var pinCount = 0;
-	var lastPinLat = 0;
-	var lastPinLong = 0;
-	function loadFlightPaths(){
-	    var x = 0;
-	    var flightPaths=jsonstr;
-	    var flightPathData = flightPaths[0];
-	    for(var tourName in flightPathData){
-	        var tourNameObj = flightPathData[tourName];
-	        pinCount = 0;
-	    	for(var pinName in tourNameObj){
-	    		var pinObj = tourNameObj[pinName];
-		        var latitude = pinObj["latitude"];
-		        var longitude = pinObj["longitude"];
-		        var description = pinObj["description"];
+	function getTourNames(){
+		$.ajax({
+    	    data: "",
+    	    url: 'PHP/tournames.php',
+     	    dataType: 'json',		    
+		    error: function (xhr, status, error) {
+		        // executed if something went wrong during call
+		        if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
+		    },
+		    success: function(data) {
+		   		 getWaypoints(data);
+		   	}
+			});
+	}
 
+
+	function getWaypoints(tours){
+		for(var i = 0; i < tours.length; i++){
+			$.ajax({
+				type: "GET",
+			    url: 'PHP/waypoints.php',
+			    data: 'name=' + tours[i],
+     		    dataType: 'json',		    
+			    error: function (xhr, status, error) {
+			        // executed if something went wrong during call
+			        if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
+			    },
+			    success: function(data) {
+			   		plotTour(data);
+			   	}
+			});				
+		}
+	}
+
+	function plotTour(points){
+		if (points.length > 0){
+			var pinCount = 0;
+			for(var i = 0; i < points.length; i++){
+				var pinName = points[i][0];
+				var latitude = points[i][1];
+				var longitude = points[i][2];
+				var description = points[i][3];
 				var pinBuilder = new Cesium.PinBuilder();
 		    	var pin = viewer.entities.add({
 		      	name : pinName,
@@ -62,17 +85,19 @@ $.getScript('../Build/Cesium/Cesium.js', function(){
 		        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
 		      	} 	
 		    	});
-		      	pin.description = description;
+		      	pin.description = description;	
 
 		      	if (pinCount != 0){
 		      		drawFlightPath([[lastPinLong, lastPinLat], [longitude, latitude]]);
 		      	}
 		      	lastPinLat = latitude;
 		      	lastPinLong = longitude;
-		      	pinCount++;
-	    	}
-	    }
+		      	pinCount++;				
+			}
+		}
 	}
 
-	loadFlightPaths();
+	getTourNames();
+
+
 });
