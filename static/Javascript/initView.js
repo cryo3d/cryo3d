@@ -1,18 +1,42 @@
 $.getScript('../Build/Cesium/Cesium.js', function(){
 	function initViewer()
-	    {
-	        var extent = Cesium.Rectangle.fromDegrees(-99.240573,41.808406,20.313421,86.468825);
-	        Cesium.Camera.DEFAULT_VIEW_RECTANGLE = extent;
-	        Cesium.Camera.DEFAULT_VIEW_FACTOR = 0;
-	        var viewer = new Cesium.Viewer('cesiumContainer', {
-	        animation : false,
-	        timeline : false,
-	        });
+    {
+        var extent = Cesium.Rectangle.fromDegrees(-99.240573,41.808406,20.313421,86.468825);
+        Cesium.Camera.DEFAULT_VIEW_RECTANGLE = extent;
+        Cesium.Camera.DEFAULT_VIEW_FACTOR = 0;
+        var viewer = new Cesium.Viewer('cesiumContainer', {
+        animation : false,
+        timeline : false,
+        });
+ 
+        return viewer;
+    }
 	 
-	        return viewer;
-	    }
-	 
-	    var viewer = initViewer();
+	var viewer = initViewer();
+
+	var layers = viewer.scene.imageryLayers;
+/*
+	var blackMarble = layers.addImageryProvider(new Cesium.TileMapServiceImageryProvider({
+	    url : '//cesiumjs.org/tilesets/imagery/blackmarble',
+	    maximumLevel : 8,
+	    credit : 'Black Marble imagery courtesy NASA Earth Observatory'
+	}));
+
+	blackMarble.alpha = 0.5; // 0.0 is transparent.  1.0 is opaque.
+*/
+    var provider = new Cesium.WebMapTileServiceImageryProvider({
+        url: "//map1.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi?" + "time === 0",
+        layer: "MODIS_Terra_CorrectedReflectance_TrueColor",
+        style: "",
+        format: "image/jpeg",
+        tileMatrixSetID: "EPSG4326_250m",
+        maximumLevel: 8,
+        tileWidth: 256,
+        tileHeight: 256,
+        tilingScheme: gibs.GeographicTilingScheme()
+    });
+
+    layers.addImageryProvider(provider);
 
 	/* Allows us to run our own custom scripts */
 	viewer.infoBox.frame.removeAttribute('sandbox');	
@@ -28,7 +52,7 @@ $.getScript('../Build/Cesium/Cesium.js', function(){
 		    polyline : {
 		        positions : Cesium.Cartesian3.fromDegreesArray(points),
 		        width : 3,
-		        material : Cesium.Color.YELLOW
+		        material : Cesium.Color.RED
 		    }
 		});
 		return redLine;
