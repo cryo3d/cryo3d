@@ -13,6 +13,9 @@ docker stop $(docker ps -a -q);
 echo "Removing all Docker containers..."
 docker rm $(docker ps -a -q);
 
+echo "Removing any dangling images"
+docker rmi $(docker images --filter dangling=true);
+
 echo "Pulling down php and mysql docker images"
 docker pull nmcteam/php56;
 docker pull sameersbn/mysql;
