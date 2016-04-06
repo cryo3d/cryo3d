@@ -51,6 +51,7 @@ CREATE TABLE `waypoints` (
   `latitude` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `longitude` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci,
+  `num` int(11) DEFAULT NULL,
   PRIMARY KEY (`name`,`tour`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -61,7 +62,7 @@ CREATE TABLE `waypoints` (
 
 LOCK TABLES `waypoints` WRITE;
 /*!40000 ALTER TABLE `waypoints` DISABLE KEYS */;
-INSERT INTO `waypoints` VALUES ('Anchorage','Alaska','58.271403','-134.443284','This place cold.'),('Fairbanks','Alaska','64.833965','-147.657242','This place is fair.'),('Greenland-2','Greenland','70.9208667','-40.170726','This is the 2nd location in Greenland'),('Greenland-3','Greenland','75.9208667','-40.170726','Location 3'),('Juneau','Alaska','61.195141','-149.809919','This place also cold.');
+INSERT INTO `waypoints` VALUES ('Anchorage','Alaska','58.271403','-134.443284','This place cold.',0),('Fairbanks','Alaska','64.833965','-147.657242','This place is fair.',1),('Greenland-2','Greenland','70.9208667','-40.170726','This is the 2nd location in Greenland',0),('Greenland-3','Greenland','75.9208667','-40.170726','Location 3',1),('Juneau','Alaska','61.195141','-149.809919','This place also cold.',2);
 /*!40000 ALTER TABLE `waypoints` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

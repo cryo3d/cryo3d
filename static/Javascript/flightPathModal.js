@@ -4,7 +4,7 @@ function showEditFlightPathModal(){
 	    type: "GET",
 	});
 	flightPathDropDownList.always(function(){
-	    $('#flightPathModal').html(flightPathDropDownList.responseText);
+	    $('#editFlightPathModal').html(flightPathDropDownList.responseText);
 	});
 }
 
@@ -26,27 +26,46 @@ function insertNewTourName(){
 }
 
 function showAddFlightPathModal(){
-	document.getElementById("flightPathModal").innerHTML =  '<center><h2>Pick a tour name:</h2><br><br>' +
+	document.getElementById("editFlightPathModal").innerHTML =  '<center><h2>Pick a tour name:</h2><br><br>' +
 															'<input id="tourName" class="textForm" type="text">' +
 															'</button>' +
 															'<button onclick="insertNewTourName()" class="flightPathModalButton" style"height:25px">' +
 															'OK</button></center>';
 }
 
-function flightPathModalToggle() {
-	var e = document.getElementById("flightPathModal");
+function editFlightPathModalToggle() { // the admin's flight path modal
+	var e = document.getElementById("editFlightPathModal");
 	e.innerHTML = '<button onclick="showEditFlightPathModal()" class="flightPathModalButton">' +
 					'Edit Existing Flight Path' +
 					'</button><button onclick="showAddFlightPathModal()" class="flightPathModalButton">' +
 					'Add New Flight Path</button>';
-		if(e.style.display == 'none')
+	if(e.style.display == 'none')
 		e.style.display = 'block';
-		else
+	else
 		e.style.display = 'none';
 }
 
-var e2 = document.getElementById('flightpaths');
-e2.onclick = flightPathModalToggle;
+function flightPathModalToggle() { // the user's flight path modal
+	var e = document.getElementById("flightPathModal");
+	flightPathList = jQuery.ajax({
+	    url: "../PHP/listFlightPaths.php",
+	    type: "GET",
+	});
+	flightPathList.always(function(){
+	    $('#flightPathModal').html(flightPathList.responseText);
+	});
+
+	if(e.style.display == 'none')
+		e.style.display = 'block';
+	else
+		e.style.display = 'none';	
+}
+
+var e2 = document.getElementById('flightpathsadmin');
+e2.onclick = editFlightPathModalToggle;
+
+var e3 = document.getElementById('flightpathsuser');
+e3.onclick = flightPathModalToggle;
 
 function addFlightPath(){
     $.ajax({
@@ -61,3 +80,6 @@ function addFlightPath(){
 	});
 }
 
+function test(){
+	console.log("yo");
+}
