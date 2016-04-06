@@ -34,7 +34,8 @@ $.getScript('../Build/Cesium/Cesium.js', function(){
 		return redLine;
 	}
 	
-	/* Flies to destination and zooms in to specified rectangle */
+	// Flies to destination and zooms in to specified rectangle
+	// Hardcoded for now, until DB functionality is connected
 	function flyFlightPaths(){
 		var latitude = 70.9208667;
         var longitude = -40.170726;
@@ -80,8 +81,9 @@ $.getScript('../Build/Cesium/Cesium.js', function(){
 		      	} 	
 		    	});
 		      	pin.description = description +
-		      		'<div style="text-align:center; padding:10px"><button class="clickButton">' +
-		      		'Next Waypoint</button></div>';
+		      		'<div style="text-align:center; padding:10px">' +
+		      		'<button class="clickButton">Last Waypoint</button>' +
+		      		'<button class="clickButton">Next Waypoint</button></div>';
 
 		      	if (pinCount != 0){
 		      		drawFlightPath([[lastPinLong, lastPinLat], [longitude, latitude]]);
