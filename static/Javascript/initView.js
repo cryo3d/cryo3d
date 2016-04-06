@@ -5,8 +5,9 @@ $.getScript('../Build/Cesium/Cesium.js', function(){
 	        Cesium.Camera.DEFAULT_VIEW_RECTANGLE = extent;
 	        Cesium.Camera.DEFAULT_VIEW_FACTOR = 0;
 	        var viewer = new Cesium.Viewer('cesiumContainer', {
-	        animation : false,
-	        timeline : false,
+	        	vrButton : true,
+		        animation : false,
+		        timeline : false,
 	        });
 	 
 	        return viewer;
