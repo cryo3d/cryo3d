@@ -68,6 +68,12 @@ function getWaypoints(tour){
 function plotTour(points, tour){
 	var waypoints = [];
 
+	if (plottedPoints.length > 0){
+		for (var j = 0; j < plottedPoints.length; j++){
+			viewer.entities.remove(plottedPoints[j]);
+		}
+	}
+
 	if (points.length > 0){
 		var pinCount = 0;
 		for(var i = 0; i < points.length; i++){
@@ -88,24 +94,25 @@ function plotTour(points, tour){
 	      	pin.description = description;	
 
 	      	if (pinCount != 0){
-	      		drawFlightPath([[lastPinLong, lastPinLat], [longitude, latitude]]);
+	      		var line = drawFlightPath([[lastPinLong, lastPinLat], [longitude, latitude]]);
+	      		plottedPoints.push(line);
 	      	}
 	      	lastPinLat = latitude;
 	      	lastPinLong = longitude;
 	      	pinCount++;	
 
-	      	//waypoints.push(pin);
-	      	autopilotTest(pin);		
+	      	plottedPoints.push(pin);
+	      	waypoints.push(pin);
+	      	autopilot(pin);		
 
 		}
 
-		//autopilot(waypoints);
-
+		//autopilotAll(waypoints);
 	}
 
 }
 
-function autopilot(waypoints){
+function autopilotAll(waypoints){
 	for(var i = 0; i < waypoints.length; i++){
 		var positions = waypoints[i].position;
 
@@ -125,8 +132,10 @@ function autopilot(waypoints){
 	}
 }
 
-function autopilotTest(waypoint){
-	/* currently flies to russia ?? */
+function autopilot(waypoint){
+	//viewer.zoomTo(waypoint); // works but zooms in all the way without nice flying animation
+
+	/* below code currently flies to russia ?? */
 	var positions = waypoint.position;
 
 	var latitude = toDegrees(positions.getValue().y);
@@ -148,3 +157,5 @@ function toDegrees(radians){
 	var pi = Math.PI;
 	return (radians * (180/pi));
 }
+
+var plottedPoints = [];
