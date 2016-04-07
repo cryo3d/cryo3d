@@ -1,6 +1,6 @@
 <center>
 <h1 class="bigHeader">Select Flight Path</h1>
-<select class="flightPathDropdown" name="cryodb">
+<select class="flightPathDropdown" id="cryodb">
 
 <?php
 $servername = "db";
@@ -24,6 +24,6 @@ $conn->close();
 ?>
 
 </select>
-<button onclick="test()" class="flightPathModalButton" style"height:25px">OK</button>
+<button onclick="takeTour()" class="flightPathModalButton" style"height:25px">OK</button>
 </center>
 

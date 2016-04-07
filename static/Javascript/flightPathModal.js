@@ -67,6 +67,13 @@ e2.onclick = editFlightPathModalToggle;
 var e3 = document.getElementById('flightpathsuser');
 e3.onclick = flightPathModalToggle;
 
+function takeTour(){
+	var tourSelect = document.getElementById("cryodb");
+	var selectedText = tourSelect.options[tourSelect.selectedIndex].text;
+	var tour = selectedText;
+	getWaypoints(tour);
+}
+
 function addFlightPath(){
     $.ajax({
 	    url: 'PHP/addFlightPath.php',
@@ -80,6 +87,3 @@ function addFlightPath(){
 	});
 }
 
-function test(){
-	console.log("yo");
-}
