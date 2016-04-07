@@ -125,3 +125,36 @@
 	  		width: 90%;
 	  		height: 100px;
 	  	}
+	  	.scrollableOptions {
+			overflow: scroll;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;			
+	  	}
+	  	.waypointRadDiv {
+			overflow: auto;
+	  		background-color: #FFFFFF;
+		    border: none;
+		    color: black;
+		    display: inline-block;
+		    padding: 0px;
+	  		font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+			font-size: 15px;
+			width: 40%;
+			height: 50%;	  		
+	  	}
+	  	.waypointAttrsDiv {
+			overflow: auto;
+	  		background-color: #FFFFFF;
+		    border: none;
+		    color: black;
+		    display: inline-block;
+		    padding: 0px;
+	  		font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+			font-size: 15px;
+			width: 55%;
+			height: 50%;	  		
+	  	}
