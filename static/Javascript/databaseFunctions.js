@@ -31,22 +31,39 @@ function getWaypoints(tour){
 }
 
 function updateWaypoint(tour, waypoint){
-	var lat = document.getElementById("newLat").value;
-	var longd = document.getElementById("newLong").value;
-	var des = document.getElementById("newDesc").value;
+	var lat = String(document.getElementById("newLat").value);
+	var longd = String(document.getElementById("newLong").value);
+	var des = String(document.getElementById("newDesc").value);
 
 	$.ajax({
 		type: "GET",
 	    url: 'PHP/editWaypoint.php',
-	    data: {name: waypoint, tour: tour, latitude: lat, longitude: longd, desc: des},
-	    //data: 'name=' + waypoint + '&tour=' + tour + '&lat=' + lat + '&long=' + longd + '&desc=' + desc,
-		dataType: 'json',		    
+	    data: 'name=' + waypoint + '&tour=' + tour + '&lat=' + lat + '&long=' + longd + '&desc=' + des,
+		dataType: 'html',		    
 	    error: function (xhr, status, error) {
-	        // executed if something went wrong during call
-	        if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
+	        if (xhr.status > 0) alert('got error: ' + status + ' , ' + error); // status 0 - when load is interrupted
 	    },
 	    success: function(data) {
-	   		console.log("success");
 	   	}
 	});			
 }
+
+function removeWaypoint(tour, waypoint){
+	
+	
+	$.ajax({
+		type: "GET",
+	    url: 'PHP/deleteWaypoint.php',
+	    data: 'name=' + waypoint + '&tour=' + tour,
+		dataType: 'html',		    
+	    error: function (xhr, status, error) {
+	        if (xhr.status > 0) alert('got error: ' + status + ' , ' + error); // status 0 - when load is interrupted
+	    },
+	    success: function(data) {
+	   	}
+	});	
+}
+
+/* TO DO: make call to PHP script that can insert a
+waypoint on a preexisting tour */
+function addWaypoint(){}

@@ -12,12 +12,9 @@ if ($conn->connect_error) {
 
 $tourname = $_GET['tour'];
 $name = $_GET['name'];
-$lat = $_GET['lat'];
-$long = $_GET['long'];
-$desc = $_GET['desc'];
 
-$sqlWaypointUpdate = "UPDATE waypoints SET latitude='" . $lat . "', longitude='" . $long . "', description='" . $desc . "' WHERE tour='" . $tourname . "' and name='" . $name . "';";
+$sqlWaypointDelete = "DELETE FROM waypoints WHERE tour='" . $tourname . "' and name='" . $name . "';";
 
-$result = $conn->query($sqlWaypointUpdate);
+$result = $conn->query($sqlWaypointDelete);
 $conn->close();
 ?>

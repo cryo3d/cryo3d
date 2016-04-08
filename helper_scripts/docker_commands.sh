@@ -5,7 +5,7 @@ echo "Removing all Docker containers..."
 docker rm $(docker ps -a -q);
 
 echo "Removing all dangling Docker images..."
-docker rmi $(docker images --filter dangling=true)
+#docker rmi $(docker images --filter dangling=true)
 
 echo "Pulling down php and mysql docker images"
 docker pull nmcteam/php56;

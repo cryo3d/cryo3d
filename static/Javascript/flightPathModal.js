@@ -1,17 +1,21 @@
 function flightPathModalToggle() { // the user's flight path modal
 	var e = document.getElementById("flightPathModal");
-	flightPathList = jQuery.ajax({
-	    url: "../PHP/listFlightPaths.php",
-	    type: "GET",
-	});
-	flightPathList.always(function(){
-	    $('#flightPathModal').html(flightPathList.responseText);
-	});
 
-	if(e.style.display == 'none')
+	if(e.style.display == 'none'){
+		hideAllModals();
 		e.style.display = 'block';
-	else
-		e.style.display = 'none';	
+		flightPathList = jQuery.ajax({
+		    url: "../PHP/listFlightPaths.php",
+		    type: "GET",
+		});
+		flightPathList.always(function(){
+		    $('#flightPathModal').html(flightPathList.responseText);
+		});	
+	}
+	else{
+		e.style.display = 'none';
+	}
+
 }
 
 var e3 = document.getElementById('flightpathsuser');

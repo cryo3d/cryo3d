@@ -88,6 +88,21 @@
 			padding: 5px 0 5px 10px;
 			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 	  	}
+		.modalPopup {
+			position: absolute;
+			margin: auto;
+			top: 0;
+  			right: 0;
+  			bottom: 0;
+  			left: 0;
+			z-index: 4;
+			width: 20%;
+			height: 10%;
+			background: white;
+			border: 1px solid #555555;
+			padding: 5px 0 5px 10px;
+			font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	  	}	  	
 	  	.flightPathModalButton {
 	  		background-color: #6495ED;
 		    border: none;

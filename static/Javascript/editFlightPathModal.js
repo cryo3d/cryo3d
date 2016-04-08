@@ -8,19 +8,22 @@ function showEditFlightPathModal(){
 	});
 }
 
+function nameNewTour(){
+	var name = document.getElementById("tourName").value;
+
+}
+
 function insertNewTourName(){
 	var name = document.getElementById("tourName").value;
 
     $.ajax({
     url: 'PHP/insertNewTourName.php',
-    type: "get", //send it through get method
+    type: "GET",
  	data:{tourName: name},
     error: function (xhr, status, error) {
-        // executed if something went wrong during call
         if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
     },
     success: function() {
-   		 //alert("No errors");
    	}
 	});
 }
@@ -29,20 +32,24 @@ function showAddFlightPathModal(){
 	document.getElementById("editFlightPathModal").innerHTML =  '<center><h2>Pick a tour name:</h2><br><br>' +
 															'<input id="tourName" class="textForm" type="text">' +
 															'</button>' +
-															'<button onclick="insertNewTourName()" class="flightPathModalButton" style"height:25px">' +
+															'<button onclick="nameNewTour()" class="flightPathModalButton" style"height:25px">' +
 															'OK</button></center>';
 }
 
 function editFlightPathModalToggle() { // the admin's flight path modal
 	var e = document.getElementById("editFlightPathModal");
-	e.innerHTML = '<button onclick="showEditFlightPathModal()" class="flightPathModalButton">' +
+
+	if(e.style.display == 'none'){
+		hideAllModals();
+		e.style.display = 'block';
+		e.innerHTML = '<button onclick="showEditFlightPathModal()" class="flightPathModalButton">' +
 					'Edit Existing Flight Path' +
 					'</button><button onclick="showAddFlightPathModal()" class="flightPathModalButton">' +
-					'Add New Flight Path</button>';
-	if(e.style.display == 'none')
-		e.style.display = 'block';
-	else
+					'Add New Flight Path</button>';	
+	}
+	else{
 		e.style.display = 'none';
+	}
 }
 
 var e2 = document.getElementById('flightpathsadmin'); //flightpath admin menubar button
@@ -56,7 +63,6 @@ function addFlightPath(){
 	        if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
 	    },
 	    success: function() {
-       		 //alert("No errors");
        	}
 	});
 }
@@ -94,8 +100,7 @@ function getWaypointFields(){
 	    data: 'name=' + txt,
 		dataType: 'json',		    
 	    error: function (xhr, status, error) {
-	        // executed if something went wrong during call
-	        if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
+	        if (xhr.status > 0) alert('got error: ' + status);
 	    },
 	    success: function(data) {
 	   		showWaypointFields(data);
@@ -116,5 +121,34 @@ function showWaypointFields(attrs){
 	htmlStr = htmlStr + 'Longitude: <input type="text" id="newLong" value="' + longitude + '"><br>';
 	htmlStr = htmlStr + 'Description: <input type="text" id="newDesc" value="' + description + '"><br>';
 	htmlStr = htmlStr + '<button onclick="updateWaypoint(\'' + tour + '\',\'' + waypoint + '\')">SAVE</button><br>';
+	//TO DO: confirmDeleteToggle not properly showing "are you sure?" modal
+	//htmlStr = htmlStr + '<button onclick="confirmDeleteToggle(\'' + tour + '\',\'' + waypoint + '\')">DELETE</button><br>';
+	htmlStr = htmlStr + '<button onclick="removeWaypoint(\'' + tour + '\',\'' + waypoint + '\')">DELETE</button><br>';
 	document.getElementById("waypointAttrsDiv").innerHTML = htmlStr;
+}
+
+function confirmDeleteToggle(tour, waypoint) { // the admin's flight path modal
+	var e = document.getElementById("confirmDeleteModal");
+
+	if(e.style.display == 'none'){
+		hideAllModals();
+		e.style.display = 'block';
+		e.innerHTML = '<b>Are you sure you would like to delete this waypoint?</b><br>' +
+					'<button onclick="yesDelete(\'' + tour + '\',\'' + waypoint + '\')">YES</button>' +
+					'<button onclick="noDelete()">NO</button>';	
+	}
+	else{
+		e.style.display = 'none';
+	}
+}
+
+function yesDeleteWaypoint(tour, waypoint){
+	var e = document.getElementById("confirmDeleteModal");
+	e.style.display = 'none';
+	removeWaypoint(tour, waypoint);
+}
+
+function noDeleteWaypoint(){
+	var e = document.getElementById("confirmDeleteModal");
+	e.style.display = 'none';
 }

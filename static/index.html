@@ -32,9 +32,8 @@
 	  		<li> <a class="active" href="#home">Home</a></li>   
 	  		<!-- TO DO: Have way to add waypoints by making GET requests with PHP and
 	  		append to the FlightPaths.jsonp file -->
-	  		<li> <a id="waypoints" href="#">Waypoints</a></li>
-        <li> <a id="flightpathsadmin" href="#">Flight Paths (admin)</a></li>
-	  		<li> <a id="flightpathsuser" href="#">Flight Paths (user)</a></li>
+        <li> <a id="flightpathsadmin" href="#">Edit Flight Paths</a></li>
+	  		<li> <a id="flightpathsuser" href="#">Take a Tour!</a></li>
 		</ul>
   	</div>
 
@@ -57,15 +56,17 @@
 
     <div id="editFlightPathModal" class="modalDialog" style="display:none; padding:0px;"></div>   
   	<div id="flightPathModal" class="modalDialog" style="display:none; padding:0px;"></div>  	
+    <div id="confirmDeleteModal" class"modalPopup" style="display:none; padding:0px;"></div>
 
   	<!-- External JS Files -->
-	
     <!-- Allows us to call php scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   	<!-- Core Cesium JS functionality -->
     <script src="../Build/Cesium/Cesium.js"></script>
   	<!-- Instantiates cesium viewer and draws things we want loaded immediately -->
     <script src="Javascript/initViewer.js"></script>
+    <!-- Functions for menubar toggle/hover -->
+    <script src="Javascript/menubar.js"></script>    
   	<!-- Flight path functions -->
     <script src="Javascript/flightPathFunctions.js"></script>
     <!-- Functions that make calls to PHP database queries -->
@@ -74,9 +75,6 @@
     <script src="Javascript/flightPathModal.js"></script>
     <!-- Functions for editFlightPathModal -->
     <script src="Javascript/editFlightPathModal.js"></script>    
-  	<!-- Functions for menubar toggle/hover -->
-    <script src="Javascript/menubar.js"></script>
-
 
 </body>
 </html>

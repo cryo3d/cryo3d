@@ -30,4 +30,5 @@ $conn->close();
 ?>
 
 </form>
+<button onclick="addWaypoint()">ADD WAYPOINT</button><br>
 </div><div class="waypointAttrsDiv" id="waypointAttrsDiv"></div>
