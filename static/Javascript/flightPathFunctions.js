@@ -16,7 +16,7 @@ function drawFlightPath(waypoints){
 	return redLine;
 }	
 
-function plotTour(points, tour){
+function plotOneTour(points, tour){ //deletes all other tours from map before plotting a new tour
 	var waypoints = [];
 
 	if (plottedPoints.length > 0){
@@ -60,6 +60,42 @@ function plotTour(points, tour){
 
 		//autopilotAll(waypoints);
 	}
+}
+
+function plotTour(points, tour){ //use this when you want to plot multiple tours at once
+	var waypoints = [];
+
+	if (points.length > 0){
+		var pinCount = 0;
+		for(var i = 0; i < points.length; i++){
+			var pinName = points[i][0];
+			var latitude = points[i][1];
+			var longitude = points[i][2];
+			var description = points[i][3];
+			var pinBuilder = new Cesium.PinBuilder();
+	    	var pin = viewer.entities.add({
+	    	tourName : tour,
+	      	name : pinName,
+	      	position : Cesium.Cartesian3.fromDegrees(longitude, latitude),
+	      	billboard : {
+	        image : pinBuilder.fromColor(Cesium.Color.CORNFLOWERBLUE, 36).toDataURL(),
+	        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
+	      	} 	
+	    	});
+	      	pin.description = description;	
+
+	      	if (pinCount != 0){
+	      		var line = drawFlightPath([[lastPinLong, lastPinLat], [longitude, latitude]]);
+	      		plottedPoints.push(line);
+	      	}
+	      	lastPinLat = latitude;
+	      	lastPinLong = longitude;
+	      	pinCount++;	
+
+	      	plottedPoints.push(pin);
+	      	waypoints.push(pin);
+		}
+	}
 
 }
 
@@ -67,7 +103,7 @@ function takeTour(){
 	var tourSelect = document.getElementById("cryodb");
 	var selectedText = tourSelect.options[tourSelect.selectedIndex].text;
 	var tour = selectedText;
-	getWaypoints(tour);
+	getWaypointsForTour(tour);
 }
 
 function autopilotAll(waypoints){
@@ -116,4 +152,18 @@ function toDegrees(radians){
 	return (radians * (180/pi));
 }
 
+function showAllFlightPaths(){
+	if (plottedPoints.length > 0){
+		for (var j = 0; j < plottedPoints.length; j++){
+			viewer.entities.remove(plottedPoints[j]);
+		}
+	}
+
+	getTourNames();
+}
+
 var plottedPoints = [];
+showAllFlightPaths();
+
+var e = document.getElementById('showallpins');
+e.onclick = showAllFlightPaths;

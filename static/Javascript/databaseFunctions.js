@@ -8,13 +8,20 @@ function getTourNames(){
 	        if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
 	    },
 	    success: function(data) {
-	   		 getWaypoints(data);
+	    	for (var i = 0; i < data.length; i++){
+	   			 getWaypoints(data[i]);
+	    	}
 	   	}
 		});
 }
 
-
 function getWaypoints(tour){
+	if (plottedPoints.length > 0){
+		for (var j = 0; j < plottedPoints.length; j++){
+			viewer.entities.remove(plottedPoints[j]);
+		}
+	}
+
 	$.ajax({
 		type: "GET",
 	    url: 'PHP/waypoints.php',
@@ -26,6 +33,23 @@ function getWaypoints(tour){
 	    },
 	    success: function(data) {
 	   		plotTour(data, tour);
+	   	}
+	});				
+}
+
+
+function getWaypointsForTour(tour){
+	$.ajax({
+		type: "GET",
+	    url: 'PHP/waypoints.php',
+	    data: 'name=' + tour,
+		dataType: 'json',		    
+	    error: function (xhr, status, error) {
+	        // executed if something went wrong during call
+	        if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
+	    },
+	    success: function(data) {
+	   		plotOneTour(data, tour);
 	   	}
 	});				
 }
@@ -49,8 +73,8 @@ function updateWaypoint(tour, waypoint){
 }
 
 function removeWaypoint(tour, waypoint){
-	
-	
+
+
 	$.ajax({
 		type: "GET",
 	    url: 'PHP/deleteWaypoint.php',

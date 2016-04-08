@@ -32,7 +32,8 @@
 	  		<li> <a class="active" href="#home">Home</a></li>   
 	  		<!-- TO DO: Have way to add waypoints by making GET requests with PHP and
 	  		append to the FlightPaths.jsonp file -->
-        <li> <a id="flightpathsadmin" href="#">Edit Flight Paths</a></li>
+        <li> <a id="flightpathsadmin" href="#">Admin Tools</a></li>
+        <li> <a id="showallpins" href="#">Show All Pins</a></li>
 	  		<li> <a id="flightpathsuser" href="#">Take a Tour!</a></li>
 		</ul>
   	</div>
@@ -66,11 +67,11 @@
   	<!-- Instantiates cesium viewer and draws things we want loaded immediately -->
     <script src="Javascript/initViewer.js"></script>
     <!-- Functions for menubar toggle/hover -->
-    <script src="Javascript/menubar.js"></script>    
+    <script src="Javascript/menubar.js"></script>  
+    <!-- Functions that make calls to PHP database queries -->
+    <script src="Javascript/databaseFunctions.js"></script>      
   	<!-- Flight path functions -->
     <script src="Javascript/flightPathFunctions.js"></script>
-    <!-- Functions that make calls to PHP database queries -->
-    <script src="Javascript/databaseFunctions.js"></script>
   	<!-- Functions for flightPathModal -->
     <script src="Javascript/flightPathModal.js"></script>
     <!-- Functions for editFlightPathModal -->
