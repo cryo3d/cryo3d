@@ -56,9 +56,9 @@ function plotOneTour(points, tour){ //deletes all other tours from map before pl
 
 	      	plottedPoints.push(pin);
 	      	waypoints.push(pin);
-	      	autopilot(pin);		
+	      	//autopilot(pin);		
 		}
-
+		manualPilotAll(waypoints);
 		//autopilotAll(waypoints);
 	}
 }
@@ -103,6 +103,7 @@ function plotTour(points, tour){ //use this when you want to plot multiple tours
 }
 
 function takeTour(){
+	hideAllModals();
 	var tourSelect = document.getElementById("cryodb");
 	var selectedText = tourSelect.options[tourSelect.selectedIndex].text;
 	var tour = selectedText;
@@ -111,30 +112,41 @@ function takeTour(){
 
 function autopilotAll(waypoints){
 	for(var i = 0; i < waypoints.length; i++){
-	//viewer.zoomTo(waypoint); // works but zooms in all the way without nice flying animation
+		var latitude = parseFloat(waypoints[i].lat);
+	    var longitude = parseFloat(waypoints[i].lon);
 
-	/* below code currently flies to russia ?? */
-	var positions = waypoint[i].position;
+		var west = longitude - 0.5;
+		var south = latitude - 0.5;
+		var east = longitude + 0.5;
+		var north = latitude + 0.5;
+		var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
 
-	var latitude = waypoint[i].lat;
-    var longitude = waypoint[i].lon;
-
-	var west = longitude - 0.5;
-	var south = latitude - 0.5;
-	var east = longitude + 0.5;
-	var north = latitude + 0.5;
-	var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
-	//var rectangle = Cesium.Cartesian3.fromDegrees(longitude, latitude, 10);
-
-	viewer.camera.flyTo({
-    	destination : rectangle,
-    	duration : 8.0
-	});
+		viewer.camera.flyTo({
+	    	destination : rectangle,
+	    	duration : 8.0
+		});
 	}
 }
 
-function autopilot(waypoint){
+function manualPilotAll(waypoints){
+	for(var i = 0; i < waypoints.length; i++){
+		var latitude = parseFloat(waypoints[i].lat);
+	    var longitude = parseFloat(waypoints[i].lon);
 
+		var west = longitude - 0.5;
+		var south = latitude - 0.5;
+		var east = longitude + 0.5;
+		var north = latitude + 0.5;
+		var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
+
+		viewer.camera.flyTo({
+	    	destination : rectangle,
+	    	duration : 8.0
+		});
+	}	
+}
+
+function autopilot(waypoint){
 	var latitude = parseFloat(waypoint.lat);
     var longitude = parseFloat(waypoint.lon);
 
