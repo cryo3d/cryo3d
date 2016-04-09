@@ -37,6 +37,8 @@ function plotOneTour(points, tour){ //deletes all other tours from map before pl
 	    	tourName : tour,
 	      	name : pinName,
 	      	position : Cesium.Cartesian3.fromDegrees(longitude, latitude),
+	      	lat: latitude,
+	      	lon: longitude,	      	
 	      	billboard : {
 	        image : pinBuilder.fromColor(Cesium.Color.CORNFLOWERBLUE, 36).toDataURL(),
 	        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
@@ -55,7 +57,6 @@ function plotOneTour(points, tour){ //deletes all other tours from map before pl
 	      	plottedPoints.push(pin);
 	      	waypoints.push(pin);
 	      	autopilot(pin);		
-
 		}
 
 		//autopilotAll(waypoints);
@@ -77,6 +78,8 @@ function plotTour(points, tour){ //use this when you want to plot multiple tours
 	    	tourName : tour,
 	      	name : pinName,
 	      	position : Cesium.Cartesian3.fromDegrees(longitude, latitude),
+	      	lat: latitude,
+	      	lon: longitude,
 	      	billboard : {
 	        image : pinBuilder.fromColor(Cesium.Color.CORNFLOWERBLUE, 36).toDataURL(),
 	        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
@@ -108,32 +111,32 @@ function takeTour(){
 
 function autopilotAll(waypoints){
 	for(var i = 0; i < waypoints.length; i++){
-		var positions = waypoints[i].position;
+	//viewer.zoomTo(waypoint); // works but zooms in all the way without nice flying animation
 
-		var latitude = positions.getValue().y;
-	    var longitude =positions.getValue().x;
+	/* below code currently flies to russia ?? */
+	var positions = waypoint[i].position;
 
-		var west = longitude - 0.5;
-		var south = latitude - 0.5;
-		var east = longitude + 0.5;
-		var north = latitude + 0.5;
-		var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
+	var latitude = waypoint[i].lat;
+    var longitude = waypoint[i].lon;
 
-		viewer.camera.flyTo({
-	    	destination : Cesium.Cartesian3(longitude, latitude),
-	    	duration : 10.0
-		});
+	var west = longitude - 0.5;
+	var south = latitude - 0.5;
+	var east = longitude + 0.5;
+	var north = latitude + 0.5;
+	var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
+	//var rectangle = Cesium.Cartesian3.fromDegrees(longitude, latitude, 10);
+
+	viewer.camera.flyTo({
+    	destination : rectangle,
+    	duration : 8.0
+	});
 	}
 }
 
 function autopilot(waypoint){
-	//viewer.zoomTo(waypoint); // works but zooms in all the way without nice flying animation
 
-	/* below code currently flies to russia ?? */
-	var positions = waypoint.position;
-
-	var latitude = toDegrees(positions.getValue().y);
-    var longitude = toDegrees(positions.getValue().x);
+	var latitude = parseFloat(waypoint.lat);
+    var longitude = parseFloat(waypoint.lon);
 
 	var west = longitude - 0.5;
 	var south = latitude - 0.5;
