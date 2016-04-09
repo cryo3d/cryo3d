@@ -73,8 +73,6 @@ function updateWaypoint(tour, waypoint){
 }
 
 function removeWaypoint(tour, waypoint){
-
-
 	$.ajax({
 		type: "GET",
 	    url: 'PHP/deleteWaypoint.php',
