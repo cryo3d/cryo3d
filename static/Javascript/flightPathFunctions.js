@@ -17,13 +17,14 @@ function drawFlightPath(waypoints){
 }	
 
 function plotOneTour(points, tour){ //deletes all other tours from map before plotting a new tour
-	var waypoints = [];
-
 	if (plottedPoints.length > 0){
 		for (var j = 0; j < plottedPoints.length; j++){
 			viewer.entities.remove(plottedPoints[j]);
 		}
 	}
+	if (waypoints.length > 0){
+		waypoints = [];
+	}	
 
 	if (points.length > 0){
 		var pinCount = 0;
@@ -44,7 +45,10 @@ function plotOneTour(points, tour){ //deletes all other tours from map before pl
 	        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
 	      	} 	
 	    	});
-	      	pin.description = description;	
+	      	pin.description = description +
+	      		'<div style="text-align:center; padding:10px">' +	
+	      		'<button class="clickButton">Last Waypoint</button>' +	
+	      		'<button class="clickButton">Next Waypoint</button></div>';	
 
 	      	if (pinCount != 0){
 	      		var line = drawFlightPath([[lastPinLong, lastPinLat], [longitude, latitude]]);
@@ -54,18 +58,27 @@ function plotOneTour(points, tour){ //deletes all other tours from map before pl
 	      	lastPinLong = longitude;
 	      	pinCount++;	
 
+
 	      	plottedPoints.push(pin);
 	      	waypoints.push(pin);
 	      	//autopilot(pin);		
 		}
-		manualPilotAll(waypoints);
+		if(points.length > 2){
+	  		var line = drawFlightPath([[points[points.length-1][2], points[points.length-1][1]], [points[0][2], points[0][1]]]);
+	  		plottedPoints.push(line);	
+		}
+
+		currentPin = 0;
+		manualPilot(waypoints, currentPin);
 		//autopilotAll(waypoints);
 	}
 }
 
-function plotTour(points, tour){ //use this when you want to plot multiple tours at once
-	var waypoints = [];
 
+var waypoints = [];
+var currentPin = 0;
+
+function plotTour(points, tour){ //use this when you want to plot multiple tours at once
 	if (points.length > 0){
 		var pinCount = 0;
 		for(var i = 0; i < points.length; i++){
@@ -85,7 +98,10 @@ function plotTour(points, tour){ //use this when you want to plot multiple tours
 	        verticalOrigin : Cesium.VerticalOrigin.BOTTOM
 	      	} 	
 	    	});
-	      	pin.description = description;	
+	      	pin.description = description +
+	      		'<div style="text-align:center; padding:10px">' +	
+	      		'<button class="clickButton">Last Waypoint</button>' +	
+	      		'<button class="clickButton">Next Waypoint</button></div>';		
 
 	      	if (pinCount != 0){
 	      		var line = drawFlightPath([[lastPinLong, lastPinLat], [longitude, latitude]]);
@@ -98,6 +114,10 @@ function plotTour(points, tour){ //use this when you want to plot multiple tours
 	      	plottedPoints.push(pin);
 	      	waypoints.push(pin);
 		}
+		if(points.length > 2){
+	  		var line = drawFlightPath([[points[points.length-1][2], points[points.length-1][1]], [points[0][2], points[0][1]]]);
+	  		plottedPoints.push(line);	
+		}		
 	}
 
 }
@@ -120,30 +140,33 @@ function autopilotAll(waypoints){
 		var east = longitude + 0.5;
 		var north = latitude + 0.5;
 		var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
-
-		viewer.camera.flyTo({
-	    	destination : rectangle,
-	    	duration : 8.0
-		});
+		flyTo(rectangle);
 	}
 }
 
-function manualPilotAll(waypoints){
-	for(var i = 0; i < waypoints.length; i++){
-		var latitude = parseFloat(waypoints[i].lat);
-	    var longitude = parseFloat(waypoints[i].lon);
+function manualPilot(waypoints, index){
+		var latitude = parseFloat(waypoints[index].lat);
+	    var longitude = parseFloat(waypoints[index].lon);
 
 		var west = longitude - 0.5;
 		var south = latitude - 0.5;
 		var east = longitude + 0.5;
 		var north = latitude + 0.5;
 		var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
+		flyTo(rectangle);
 
-		viewer.camera.flyTo({
-	    	destination : rectangle,
-	    	duration : 8.0
-		});
-	}	
+		var newIndex = index + 1;
+		if (newIndex > waypoints.length - 1){
+			newIndex = 0;
+		}
+		currentPin = newIndex;
+}
+
+function flyTo(rectangle){
+	var fly = viewer.camera.flyTo({
+    	destination : rectangle,
+    	duration : 10.0
+	});	
 }
 
 function autopilot(waypoint){
@@ -156,15 +179,7 @@ function autopilot(waypoint){
 	var north = latitude + 0.5;
 	var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
 
-	viewer.camera.flyTo({
-    	destination : rectangle,
-    	duration : 8.0
-	});
-}
-
-function toDegrees(radians){
-	var pi = Math.PI;
-	return (radians * (180/pi));
+	flyTo(rectangle);
 }
 
 function showAllFlightPaths(){
@@ -182,3 +197,11 @@ showAllFlightPaths();
 
 var e = document.getElementById('showallpins');
 e.onclick = showAllFlightPaths;
+
+viewer.infoBox.frame.addEventListener('load', function(){
+	viewer.infoBox.frame.contentDocument.body.addEventListener('click', function(e){
+		if (e.target && e.target.className === 'clickButton'){
+			manualPilot(waypoints, currentPin);
+		}
+	}, false);
+}, false);
