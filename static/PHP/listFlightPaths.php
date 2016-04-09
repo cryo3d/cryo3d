@@ -1,6 +1,6 @@
 <center>
 <h1 class="bigHeader">Select Flight Path</h1>
-<select class="flightPathDropdown" id="editFP">
+<select class="flightPathDropdown" id="cryodb">
 
 <?php
 $servername = "db";
@@ -20,11 +20,10 @@ while ($row = $result->fetch_assoc()){
 echo "<option value=\"owner1\">" . $row['name'] . "</option>";
 }
 
-echo "</select>";
-echo '<button onclick="editExistingFlightPathUI()" class="flightPathModalButton" style"height:25px">OK</button>';
-
 $conn->close();
 ?>
 
+</select>
+<button onclick="takeTour()" class="flightPathModalButton" style"height:25px">OK</button>
 </center>
 

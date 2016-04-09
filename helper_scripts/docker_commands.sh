@@ -23,6 +23,9 @@ docker run \
     --name db \
     sameersbn/mysql;
 
+echo "Now we sleep for 30 seconds to let mysql start up..."
+sleep 30
+
 echo "Running nmcteam/php56 image and linking up to mysql database"
 docker run \
     -d \

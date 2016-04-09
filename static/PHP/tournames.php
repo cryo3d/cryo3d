@@ -1,7 +1,3 @@
-<center>
-<h1 class="bigHeader">Select Flight Path</h1>
-<select class="flightPathDropdown" id="editFP">
-
 <?php
 $servername = "db";
 $username = "user";
@@ -13,18 +9,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
+$names = array();
 $sqlTourNames = "SELECT name FROM tours";
 $result = $conn->query($sqlTourNames);
 
 while ($row = $result->fetch_assoc()){
-echo "<option value=\"owner1\">" . $row['name'] . "</option>";
+	$tourName = $row['name'];
+  array_push($names, $tourName);
 }
-
-echo "</select>";
-echo '<button onclick="editExistingFlightPathUI()" class="flightPathModalButton" style"height:25px">OK</button>';
-
-$conn->close();
+  echo json_encode($names);
+  $conn->close();
 ?>
-
-</center>
-

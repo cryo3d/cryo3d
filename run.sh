@@ -6,7 +6,7 @@ if [ "$#" -ne 1 ]; then
                 one.
 
     -p          force your database data to be persistent, only run
-                this is you've used the -a flag beforehand
+                this is you've used the -r flag beforehand
 
     -t          don't back up any changes made to the database, good
                 for testing";

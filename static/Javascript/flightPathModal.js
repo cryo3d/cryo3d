@@ -1,63 +1,22 @@
-function showEditFlightPathModal(){
-	flightPathDropDownList = jQuery.ajax({
-	    url: "../PHP/populateTourNameList.php",
-	    type: "GET",
-	});
-	flightPathDropDownList.always(function(){
-	    $('#flightPathModal').html(flightPathDropDownList.responseText);
-	});
-}
-
-function insertNewTourName(){
-	var name = document.getElementById("tourName").value;
-
-    $.ajax({
-    url: 'PHP/insertNewTourName.php',
-    type: "get", //send it through get method
- 	data:{tourName: name},
-    error: function (xhr, status, error) {
-        // executed if something went wrong during call
-        if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
-    },
-    success: function() {
-   		 //alert("No errors");
-   	}
-});
-}
-
-function showAddFlightPathModal(){
-	document.getElementById("flightPathModal").innerHTML =  '<center><h2>Pick a tour name:</h2><br><br>' +
-															'<input id="tourName" class="textForm" type="text">' +
-															'</button>' +
-															'<button onclick="insertNewTourName()" class="flightPathModalButton" style"height:25px">' +
-															'OK</button></center>';
-}
-
-function flightPathModalToggle() {
+function flightPathModalToggle() { // the user's flight path modal
 	var e = document.getElementById("flightPathModal");
-	e.innerHTML = '<button onclick="showEditFlightPathModal()" class="flightPathModalButton">' +
-					'Edit Existing Flight Path' +
-					'</button><button onclick="showAddFlightPathModal()" class="flightPathModalButton">' +
-					'Add New Flight Path</button>';
-		if(e.style.display == 'none')
+
+	if(e.style.display == 'none'){
+		hideAllModals();
 		e.style.display = 'block';
-		else
+		flightPathList = jQuery.ajax({
+		    url: "../PHP/listFlightPaths.php",
+		    type: "GET",
+		});
+		flightPathList.always(function(){
+		    $('#flightPathModal').html(flightPathList.responseText);
+		});	
+	}
+	else{
 		e.style.display = 'none';
+	}
+
 }
 
-var e2 = document.getElementById('flightpaths');
-e2.onclick = flightPathModalToggle;
-
-function addFlightPath(){
-    $.ajax({
-	    url: 'PHP/addFlightPath.php',
-	    error: function (xhr, status, error) {
-	        // executed if something went wrong during call
-	        if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
-	    },
-	    success: function() {
-       		 //alert("No errors");
-       	}
-	});
-}
-
+var e3 = document.getElementById('flightpathsuser');
+e3.onclick = flightPathModalToggle;
