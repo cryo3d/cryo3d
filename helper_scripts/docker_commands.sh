@@ -5,7 +5,7 @@ echo "Removing all Docker containers..."
 docker rm $(docker ps -a -q);
 
 echo "Removing all dangling Docker images..."
-#docker rmi $(docker images --filter dangling=true)
+docker rmi $(docker images --filter dangling=true)
 
 echo "Pulling down php and mysql docker images"
 docker pull nmcteam/php56;
@@ -22,6 +22,8 @@ docker run \
     -e "DB_REMOTE_ROOT_PASS=pass" \
     --name db \
     sameersbn/mysql;
+
+sleep 30
 
 echo "Running nmcteam/php56 image and linking up to mysql database"
 docker run \
