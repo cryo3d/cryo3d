@@ -131,7 +131,6 @@ function autopilot(waypoint){
 
 	/* below code currently flies to russia ?? */
 	var positions = waypoint.position;
-	var dest = Cartesian3.clone(positions);
 
 	var latitude = toDegrees(positions.getValue().y);
     var longitude = toDegrees(positions.getValue().x);
@@ -143,7 +142,7 @@ function autopilot(waypoint){
 	var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
 
 	viewer.camera.flyTo({
-    	destination : dest,
+    	destination : rectangle,
     	duration : 8.0
 	});
 }
