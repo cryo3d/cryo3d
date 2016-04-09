@@ -57,6 +57,9 @@
 			font-weight: 700px;
 			line-height: 40px;
 		}
+		.menuButton:hover {
+  			transform: skew(-10deg);
+  		}
 		.adminLoginButton {
 			position: absolute;
 			z-index: 3;
