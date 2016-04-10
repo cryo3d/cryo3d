@@ -11,6 +11,7 @@ function initViewer(){
 }
  
 var viewer = initViewer();
+var scene = viewer.scene;
 
 /* Allows us to run our own custom scripts */
 viewer.infoBox.frame.removeAttribute('sandbox');	

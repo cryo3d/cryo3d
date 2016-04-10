@@ -16,12 +16,6 @@ function getTourNames(){
 }
 
 function getWaypoints(tour){
-	if (plottedPoints.length > 0){
-		for (var j = 0; j < plottedPoints.length; j++){
-			viewer.entities.remove(plottedPoints[j]);
-		}
-	}
-
 	$.ajax({
 		type: "GET",
 	    url: 'PHP/waypoints.php',
