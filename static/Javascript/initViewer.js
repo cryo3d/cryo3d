@@ -5,9 +5,9 @@ function initViewer(){
         var viewer = new Cesium.Viewer('cesiumContainer', {
         animation : false,
         timeline : false,
-        });
+	});
  
-        return viewer;
+    return viewer;
 }
  
 var viewer = initViewer();
