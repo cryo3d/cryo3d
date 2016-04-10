@@ -1,15 +1,6 @@
-var waypoints = [];
-var currentPinIndex = 0; //keeps track what pin we are currently on during a tour
-
-function plotOneTour(points, tour){ //deletes all other tours from map before plotting a new tour
-	waypoints = [];		
+function plotManualTour(points, tour){ //deletes all other tours from map before plotting a new tour
+	removeAllEntities();
 	var numPoints = points.length;
-
-	if (plottedPoints.length > 0){
-		for (var j = 0; j < plottedPoints.length; j++){
-			viewer.entities.remove(plottedPoints[j]);
-		}
-	}
 
 	if (numPoints > 0){
 		var pinCount = 0;
@@ -26,18 +17,18 @@ function plotOneTour(points, tour){ //deletes all other tours from map before pl
 
 	      	if (pinCount != 0){
 	      		var line = drawFlightPath([lastPinLong, lastPinLat], [longitude, latitude]);
-	      		plottedPoints.push(line);
+	      		allEntities.push(line);
 	      	}
 	      	lastPinLat = latitude;
 	      	lastPinLong = longitude;
 	      	pinCount++;	
 
-	      	plottedPoints.push(pin);
+	      	allEntities.push(pin);
 	      	waypoints.push(pin);
 		}
 		if(numPoints > 2){
 	  		var line = drawFlightPath([points[numPoints-1][2], points[numPoints-1][1]], [points[0][2], points[0][1]]);
-	  		plottedPoints.push(line);	
+	  		allEntities.push(line);	
 		}
 		flyToFirstWaypoint();
 	}
@@ -52,13 +43,8 @@ function manualPilotNext(){
 
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
     var longitude = parseFloat(waypoints[currentPinIndex].lon);
+	flyTo(latitude, longitude, 0.5, 8.0);	
 
-	var west = longitude - 0.5;
-	var south = latitude - 0.5;
-	var east = longitude + 0.5;
-	var north = latitude + 0.5;
-	var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
-	flyTo(rectangle);
 }
 
 function manualPilotLast(){
@@ -70,13 +56,7 @@ function manualPilotLast(){
 
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
     var longitude = parseFloat(waypoints[currentPinIndex].lon);
-
-	var west = longitude - 0.5;
-	var south = latitude - 0.5;
-	var east = longitude + 0.5;
-	var north = latitude + 0.5;
-	var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
-	flyTo(rectangle);	
+	flyTo(latitude, longitude, 0.5, 8.0);	
 }
 
 function takeTour(){
@@ -84,20 +64,14 @@ function takeTour(){
 	var tourSelect = document.getElementById("cryodb");
 	var selectedText = tourSelect.options[tourSelect.selectedIndex].text;
 	var tour = selectedText;
-	getWaypointsForTour(tour);
+	getWaypointsForManualTour(tour);
 }
 
 function flyToFirstWaypoint(){
 	currentPinIndex = 0;
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
     var longitude = parseFloat(waypoints[currentPinIndex].lon);
-
-	var west = longitude - 0.5;
-	var south = latitude - 0.5;
-	var east = longitude + 0.5;
-	var north = latitude + 0.5;
-	var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
-	flyTo(rectangle);	
+	flyTo(latitude, longitude, 0.5, 8.0);	
 }
 
 /* gets called when we are in a manual tour and somebody clicks on a pin

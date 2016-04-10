@@ -32,7 +32,7 @@ function getWaypoints(tour){
 }
 
 
-function getWaypointsForTour(tour){
+function getWaypointsForManualTour(tour){
 	$.ajax({
 		type: "GET",
 	    url: 'PHP/waypoints.php',
@@ -43,7 +43,23 @@ function getWaypointsForTour(tour){
 	        //if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
 	    },
 	    success: function(data) {
-	   		plotOneTour(data, tour);
+	   		plotManualTour(data, tour);
+	   	}
+	});				
+}
+
+function getWaypointsForAutoTour(tour){
+	$.ajax({
+		type: "GET",
+	    url: 'PHP/waypoints.php',
+	    data: 'name=' + tour,
+		dataType: 'json',		    
+	    error: function (xhr, status, error) {
+	        // executed if something went wrong during call
+	        //if (xhr.status > 0) alert('got error: ' + status); // status 0 - when load is interrupted
+	    },
+	    success: function(data) {
+	   		plotAutoTour(data, tour);
 	   	}
 	});				
 }
