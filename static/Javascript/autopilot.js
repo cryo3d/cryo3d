@@ -1,3 +1,4 @@
+/* Triggered when the user selects a tour and then clicks "Autopilot" */
 function autopilot(){
 	viewer.camera.moveEnd.addEventListener(nextPoint);
 	hideAllModals();
@@ -7,6 +8,7 @@ function autopilot(){
 	getWaypointsForAutoTour(tour);	
 }
 
+/* Flies to first pin of the selected tour */
 function startTour(){
 	currentPinIndex = 0;
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
@@ -14,6 +16,8 @@ function startTour(){
 	flyTo(latitude, longitude, 0.5, 8.0);		
 }
 
+/* Called automatically when camera stops moving, then starts
+flying to the next waypoint */
 function nextPoint(){
 	var newIndex = currentPinIndex + 1;
 	if (newIndex > waypoints.length - 1){ //end of tour
@@ -27,7 +31,10 @@ function nextPoint(){
 	}
 }
 
-function plotAutoTour(points, tour){ //deletes all other tours from map before plotting a new tour
+/* Removes all points/lines on map, plots the selected tour on the map,
+connects the waypoints with flightpaths, adds first/last button to
+pin entities */
+function plotAutoTour(points, tour){
 	removeAllEntities();
 	var numPoints = points.length;
 

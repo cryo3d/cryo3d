@@ -1,4 +1,4 @@
-var waypoints = [];
+var waypoints = []; //keeps track of all waypoints during a current tour
 var allEntities = []; //keeps track of all entities drawn on the map
 
 /* Connect 2 waypoints on map and draw a line */
@@ -15,7 +15,8 @@ function drawFlightPath(point1, point2){
 	return redLine;
 }	
 
-function plotTour(points, tour){ //use this when you want to plot multiple tours at once
+/* Called when "Show all pins" is selected */
+function plotTour(points, tour){
 	var numPoints = points.length;
 	if (numPoints > 0){
 		var pinCount = 0;
@@ -44,6 +45,7 @@ function plotTour(points, tour){ //use this when you want to plot multiple tours
 	}
 }
 
+/* Can use this to create pin instead of rewriting all the Cesium code*/
 function createPin(tour, pinName, longitude, latitude, color){
 	var pinBuilder = new Cesium.PinBuilder();
 		var pin = viewer.entities.add({
@@ -60,6 +62,7 @@ function createPin(tour, pinName, longitude, latitude, color){
 	return pin;	
 }
 
+/* Can use this to fly to a waypoint instead of rewriting all the Cesium code*/
 function flyTo(latitude, longitude, zoom, time){
 	var west = longitude - zoom;
 	var south = latitude - zoom;
@@ -73,7 +76,7 @@ function flyTo(latitude, longitude, zoom, time){
 	});	
 }
 
-
+/* Deletes all waypoints/flight paths from the map */
 function removeAllEntities(){
 	waypoints = [];
 	if (allEntities.length > 0){
@@ -83,6 +86,7 @@ function removeAllEntities(){
 	}	
 }
 
+/* Called when "Show all pins" is clicked */
 function showAllFlightPaths(){
 	removeAllEntities();
 	getTourNames();

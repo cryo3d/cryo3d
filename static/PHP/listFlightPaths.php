@@ -24,7 +24,7 @@ $conn->close();
 ?>
 
 </select>
-<button onclick="autopilot()" class="flightPathModalButton" style"height:25px">Autopilot</button>
-<button onclick="takeTour()" class="flightPathModalButton" style"height:25px">Manual</button>
+<button onclick="autopilot()" class="flightPathModalButton" style="height:25px width:100px">Autopilot</button>
+<button onclick="takeTour()" class="flightPathModalButton" style="height:25px width:100px">Manual</button>
 </center>
 

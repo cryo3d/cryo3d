@@ -1,4 +1,7 @@
-function plotManualTour(points, tour){ //deletes all other tours from map before plotting a new tour
+/* Removes all points/lines on map, plots the selected tour on the map,
+connects the waypoints with flightpaths, adds first/last button to
+pin entities */
+function plotManualTour(points, tour){
 	removeAllEntities();
 	var numPoints = points.length;
 
@@ -34,6 +37,7 @@ function plotManualTour(points, tour){ //deletes all other tours from map before
 	}
 }
 
+/* Called during a manual tour when the user clicks "next" */
 function manualPilotNext(){
 	var newIndex = currentPinIndex + 1;
 	if (newIndex > waypoints.length - 1){
@@ -47,6 +51,7 @@ function manualPilotNext(){
 
 }
 
+/* Called during a manual tour when the user clicks "last" */
 function manualPilotLast(){
 	var newIndex = currentPinIndex - 1;
 	if (newIndex < 0){
@@ -59,6 +64,7 @@ function manualPilotLast(){
 	flyTo(latitude, longitude, 0.5, 8.0);	
 }
 
+/* Triggered when the user selects a tour and then clicks "Manual" */
 function takeTour(){
 	hideAllModals();
 	var tourSelect = document.getElementById("cryodb");
@@ -67,6 +73,7 @@ function takeTour(){
 	getWaypointsForManualTour(tour);
 }
 
+/* Flies to first pin of the selected tour */
 function flyToFirstWaypoint(){
 	currentPinIndex = 0;
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
@@ -86,21 +93,3 @@ function updateCurrentPinIndex(lat, lon){
 		}
 	}
 }
-
-viewer.infoBox.frame.addEventListener('load', function(){
-	viewer.infoBox.frame.contentDocument.body.addEventListener('click', function(e){
-		if (e.target && e.target.className === 'lastButton'){
-			manualPilotLast();
-		}
-		else if (e.target && e.target.className === 'nextButton'){
-			manualPilotNext();
-		}
-	}, false);
-}, false);
-
-pinClickedHandler.setInputAction(function(click) {
-    var pickedObject = scene.pick(click.position);
-    if (Cesium.defined(pickedObject) && Cesium.defined(pickedObject.id.tourName)) {
-        updateCurrentPinIndex(pickedObject.id.lat, pickedObject.id.lon);
-    }
-}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
