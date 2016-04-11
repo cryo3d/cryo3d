@@ -105,6 +105,7 @@ function removeAllEntities(){
 
 /* Called when "Show all pins" is clicked */
 function showAllFlightPaths(){
+	viewer.selectedEntity = null;
 	removeAllEntities();
 	hideAllModals();
 	viewer.camera.flyHome(1.0);

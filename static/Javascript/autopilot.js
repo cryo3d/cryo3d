@@ -1,7 +1,6 @@
 /* Triggered when the user selects a tour and then clicks "Autopilot" */
 function autopilot(){
 	viewer.camera.moveEnd.addEventListener(nextPoint);
-	viewer.camera.cancelled.addEventListener(removeAutopilotCameraListeners);
 	hideAllModals();
 	var tourSelect = document.getElementById("cryodb");
 	var selectedText = tourSelect.options[tourSelect.selectedIndex].text;
@@ -28,7 +27,7 @@ function nextPoint(){
 		currentPinIndex = newIndex;
 		var latitude = parseFloat(waypoints[currentPinIndex].lat);
 	    var longitude = parseFloat(waypoints[currentPinIndex].lon);
-		flyTo(latitude, longitude, 0.2, 10.0);	
+		flyTo(latitude, longitude, 0.2, 20.0);	
 	}
 }
 
@@ -70,5 +69,4 @@ function plotAutoTour(points, tour){
 
 function removeAutopilotCameraListeners(){
 	viewer.camera.moveEnd.removeEventListener(nextPoint);
-	viewer.camera.cancelled.removeEventListener(removeAutopilotCameraListeners);
 }
