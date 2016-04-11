@@ -27,15 +27,15 @@ addLayerToggleOption("Terra Sea Ice", "terraSeaIce", 0.0, 1.0, 0.1);
 addLayerToggleOption("Aqua Sea Ice", "aquaSeaIce", 0.0, 1.0, 0.1);
 addLayerToggleOption("Coastlines", "coastlines", 0.0, 1.0, 0.1);
 var terraSeaIceSlider = document.getElementById("terraSeaIce");
-	terraSeaIceSlider.onclick = function () {
+	terraSeaIceSlider.onmouseup = function () {
   	  updateLayerAlpha(terraSeaIce, terraSeaIceSlider.value);
 	};	
 var aquaSeaIceSlider = document.getElementById("aquaSeaIce");
-	aquaSeaIceSlider.onclick = function () {
+	aquaSeaIceSlider.onmouseup = function () {
   		updateLayerAlpha(aquaSeaIce, aquaSeaIceSlider.value);
 };	
 var coastlinesSlider = document.getElementById("coastlines");
-	coastlinesSlider.onclick = function () {
+	coastlinesSlider.onmouseup = function () {
 	  updateLayerAlpha(coastlines, coastlinesSlider.value);
 };	
 
