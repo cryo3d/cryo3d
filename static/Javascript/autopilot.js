@@ -1,6 +1,7 @@
 /* Triggered when the user selects a tour and then clicks "Autopilot" */
 function autopilot(){
 	viewer.camera.moveEnd.addEventListener(nextPoint);
+	viewer.camera.cancelled.addEventListener(removeAutopilotCameraListeners);
 	hideAllModals();
 	var tourSelect = document.getElementById("cryodb");
 	var selectedText = tourSelect.options[tourSelect.selectedIndex].text;
@@ -65,4 +66,9 @@ function plotAutoTour(points, tour){
 		}
 		startTour();
 	}
+}
+
+function removeAutopilotCameraListeners(){
+	viewer.camera.moveEnd.removeEventListener(nextPoint);
+	viewer.camera.cancelled.removeEventListener(removeAutopilotCameraListeners);
 }

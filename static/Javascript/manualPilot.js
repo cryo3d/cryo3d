@@ -40,12 +40,15 @@ function plotManualTour(points, tour){
 
 /* Called during a manual tour when the user clicks "next" */
 function manualPilotNext(){
+	removeDescriptionBox();
+	addManualCameraListeners();
 	var newIndex = currentPinIndex + 1;
 	if (newIndex > waypoints.length - 1){
 		newIndex = 0;
 	}
 	currentPinIndex = newIndex;
 
+	viewer.selectedEntity = waypoints[currentPinIndex];
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
     var longitude = parseFloat(waypoints[currentPinIndex].lon);
 	flyTo(latitude, longitude, 0.2, 10.0);	
@@ -54,6 +57,8 @@ function manualPilotNext(){
 
 /* Called during a manual tour when the user clicks "last" */
 function manualPilotLast(){
+	removeDescriptionBox();
+	addManualCameraListeners();
 	var newIndex = currentPinIndex - 1;
 	if (newIndex < 0){
 		newIndex = waypoints.length - 1;
@@ -77,11 +82,13 @@ function takeTour(){
 /* Flies to first pin of the selected tour */
 function flyToFirstWaypoint(){
 	hideAllModals();
-	showLastNextButtons();
+	addManualCameraListeners();
 	currentPinIndex = 0;
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
     var longitude = parseFloat(waypoints[currentPinIndex].lon);
 	flyTo(latitude, longitude, 0.2, 10.0);	
+	showLastNextButtons();
+
 }
 
 /* gets called when we are in a manual tour and somebody clicks on a pin
@@ -103,4 +110,23 @@ function showLastNextButtons(){
 	var next = document.getElementById("nextButton");
 	last.style.display = 'inline-block';
 	next.style.display = 'inline-block';
+}
+
+function showDescriptionBox(){
+	viewer.selectedEntity = waypoints[currentPinIndex];
+	viewer.camera.moveEnd.removeEventListener(showDescriptionBox);
+	viewer.camera.moveStart.removeEventListener(removeDescriptionBox);
+}
+
+function removeDescriptionBox(){
+	viewer.selectedEntity = null;
+}
+
+function addManualCameraListeners(){
+	viewer.camera.moveEnd.addEventListener(showDescriptionBox);
+	viewer.camera.moveStart.addEventListener(removeDescriptionBox);
+}
+
+function removeManualCameraListeners(){
+	viewer.camera.moveEnd.removeEventListener(showDescriptionBox);
 }
