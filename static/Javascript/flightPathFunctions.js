@@ -107,6 +107,7 @@ function removeAllEntities(){
 function showAllFlightPaths(){
 	removeAllEntities();
 	hideAllModals();
+	mainCameraView();
 	getTourNames();
 }
 
