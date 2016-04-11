@@ -15,15 +15,20 @@
 </head>
 
 <body>
-	<div id="cesiumContainer"></div>
+	  <div id="cesiumContainer"></div>
 
   	<div id="menuButton">
-		<button class="menuButton" onclick="menuBarToggle()" onmouseover="menuHover()">Cryo3D</button>
+		  <button class="menuButton" onclick="menuBarToggle()">Cryo3D</button>
   	</div>
 
   	<div id="adminButton">
   		<button class="adminLoginButton" onclick="adminLoginToggle()">Admin? Login Here!</button>
   	</div>
+
+    <div>
+      <button onclick="manualPilotLast()" class="manualTourButton" id="lastButton" style="display:none;">LAST</button>
+      <button onclick="manualPilotNext()" class="manualTourButton" id="nextButton" style="display:none; left:50%;">NEXT</button>
+    </div>
 
   	<div id="menuBar">
 		<ul>

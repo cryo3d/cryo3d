@@ -106,6 +106,7 @@ function removeAllEntities(){
 /* Called when "Show all pins" is clicked */
 function showAllFlightPaths(){
 	removeAllEntities();
+	hideAllModals();
 	getTourNames();
 }
 
