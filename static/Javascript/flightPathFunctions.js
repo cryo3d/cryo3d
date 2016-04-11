@@ -65,15 +65,32 @@ function createPin(tour, pinName, longitude, latitude, color){
 /* Can use this to fly to a waypoint instead of rewriting all the Cesium code*/
 function flyTo(latitude, longitude, zoom, time){
 	var west = longitude - zoom;
-	var south = latitude - zoom;
+	var south = latitude - 2*zoom;
 	var east = longitude + zoom;
-	var north = latitude + zoom;
+	var north = latitude + .5*zoom;
 	var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
+	
+	var boxSouth = latitude - 0.5*zoom;
+	var outlineRectangle = Cesium.Rectangle.fromDegrees(west, boxSouth, east, north);
 
 	var fly = viewer.camera.flyTo({
     	destination : rectangle,
-    	duration : time
+    	duration : time,
+    	orientation : {
+            heading : Cesium.Math.toRadians(-5.0),
+            pitch : Cesium.Math.toRadians(-65.0),
+            roll : 0.0
+        }
 	});	
+
+	viewer.entities.add({
+    	rectangle : {
+	        coordinates : outlineRectangle,
+	        fill : false,
+	        outline : true,
+	        outlineColor : Cesium.Color.RED
+    	}
+	});
 }
 
 /* Deletes all waypoints/flight paths from the map */

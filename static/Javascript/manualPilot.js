@@ -47,7 +47,7 @@ function manualPilotNext(){
 
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
     var longitude = parseFloat(waypoints[currentPinIndex].lon);
-	flyTo(latitude, longitude, 0.5, 8.0);	
+	flyTo(latitude, longitude, 0.2, 10.0);	
 
 }
 
@@ -61,7 +61,7 @@ function manualPilotLast(){
 
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
     var longitude = parseFloat(waypoints[currentPinIndex].lon);
-	flyTo(latitude, longitude, 0.5, 8.0);	
+	flyTo(latitude, longitude, 0.2, 10.0);	
 }
 
 /* Triggered when the user selects a tour and then clicks "Manual" */
@@ -78,7 +78,7 @@ function flyToFirstWaypoint(){
 	currentPinIndex = 0;
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
     var longitude = parseFloat(waypoints[currentPinIndex].lon);
-	flyTo(latitude, longitude, 0.5, 8.0);	
+	flyTo(latitude, longitude, 0.2, 10.0);	
 }
 
 /* gets called when we are in a manual tour and somebody clicks on a pin

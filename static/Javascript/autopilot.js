@@ -13,7 +13,7 @@ function startTour(){
 	currentPinIndex = 0;
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
     var longitude = parseFloat(waypoints[currentPinIndex].lon);
-	flyTo(latitude, longitude, 0.5, 8.0);		
+	flyTo(latitude, longitude, 0.2, 10.0);		
 }
 
 /* Called automatically when camera stops moving, then starts
@@ -27,7 +27,7 @@ function nextPoint(){
 		currentPinIndex = newIndex;
 		var latitude = parseFloat(waypoints[currentPinIndex].lat);
 	    var longitude = parseFloat(waypoints[currentPinIndex].lon);
-		flyTo(latitude, longitude, 0.5, 8.0);	
+		flyTo(latitude, longitude, 0.2, 10.0);	
 	}
 }
 
