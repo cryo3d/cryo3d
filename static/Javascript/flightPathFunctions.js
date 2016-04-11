@@ -107,7 +107,7 @@ function removeAllEntities(){
 function showAllFlightPaths(){
 	removeAllEntities();
 	hideAllModals();
-	mainCameraView();
+	viewer.camera.flyHome(1.0);
 	getTourNames();
 }
 
