@@ -6,17 +6,3 @@ pinClickedHandler.setInputAction(function(click) {
         updateCurrentPinIndex(pickedObject.id.lat, pickedObject.id.lon);
     }
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-/* Creates event listeners for the next/last buttons for our manual tours
-Commented out for the time being because these don't always work */
-/*
-viewer.infoBox.frame.addEventListener('load', function(){
-	viewer.infoBox.frame.contentDocument.body.addEventListener('click', function(e){
-		if (e.target && e.target.className === 'lastButton'){
-			manualPilotLast();
-		}
-		else if (e.target && e.target.className === 'nextButton'){
-			manualPilotNext();
-		}
-	}, false);
-}, false);	*/

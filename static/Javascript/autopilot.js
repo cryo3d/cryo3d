@@ -48,7 +48,7 @@ function startTour(){
 	currentPinIndex = 0;
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
     var longitude = parseFloat(waypoints[currentPinIndex].lon);
-	flyTo(latitude, longitude, 0.2, 20.0);		
+	flyTo(latitude, longitude, 0.2, 5.0);		
 }
 
 /* Called automatically when camera stops moving, then starts

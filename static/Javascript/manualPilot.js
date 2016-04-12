@@ -14,10 +14,6 @@ function plotManualTour(points, tour){
 			var description = points[i][3];
 			var pin = createPin(tour, pinName, longitude, latitude, Cesium.Color.CORNFLOWERBLUE);
 			pin.description = description;
-	      	/*pin.description = description +
-	      		'<div style="text-align:center; padding:10px">' +	
-	      		'<button class="lastButton">Last Waypoint</button>' +	
-	      		'<button class="nextButton">Next Waypoint</button></div>';	*/
 
 	      	if (pinCount != 0){
 	      		var line = drawFlightPath([lastPinLong, lastPinLat], [longitude, latitude]);
@@ -88,7 +84,7 @@ function flyToFirstWaypoint(){
 	currentPinIndex = 0;
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
     var longitude = parseFloat(waypoints[currentPinIndex].lon);
-	flyTo(latitude, longitude, 0.2, 10.0, true);	
+	flyTo(latitude, longitude, 0.2, 5.0);	
 	showLastNextButtons();
 
 }
