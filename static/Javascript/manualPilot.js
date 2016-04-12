@@ -40,6 +40,7 @@ function plotManualTour(points, tour){
 
 /* Called during a manual tour when the user clicks "next" */
 function manualPilotNext(){
+	var oldPin = waypoints[currentPinIndex];
 	removeDescriptionBox();
 	addManualCameraListeners();
 	var newIndex = currentPinIndex + 1;
@@ -48,15 +49,15 @@ function manualPilotNext(){
 	}
 	currentPinIndex = newIndex;
 
-	viewer.selectedEntity = waypoints[currentPinIndex];
-	var latitude = parseFloat(waypoints[currentPinIndex].lat);
-    var longitude = parseFloat(waypoints[currentPinIndex].lon);
-	flyTo(latitude, longitude, 0.2, 10.0);	
-
+	var pin = waypoints[currentPinIndex];
+	var latitude = parseFloat(pin.lat);
+    var longitude = parseFloat(pin.lon);
+	flyToNextPin(oldPin, pin, 0.2, 0.5);
 }
 
 /* Called during a manual tour when the user clicks "last" */
 function manualPilotLast(){
+	var oldPin = waypoints[currentPinIndex];
 	removeDescriptionBox();
 	addManualCameraListeners();
 	var newIndex = currentPinIndex - 1;
@@ -65,9 +66,10 @@ function manualPilotLast(){
 	}
 	currentPinIndex = newIndex;
 
-	var latitude = parseFloat(waypoints[currentPinIndex].lat);
-    var longitude = parseFloat(waypoints[currentPinIndex].lon);
-	flyTo(latitude, longitude, 0.2, 10.0);	
+	var pin = waypoints[currentPinIndex];
+	var latitude = parseFloat(pin.lat);
+    var longitude = parseFloat(pin.lon);
+	flyToNextPin(oldPin, pin, 0.2, 0.5);
 }
 
 /* Triggered when the user selects a tour and then clicks "Manual" */
@@ -86,7 +88,7 @@ function flyToFirstWaypoint(){
 	currentPinIndex = 0;
 	var latitude = parseFloat(waypoints[currentPinIndex].lat);
     var longitude = parseFloat(waypoints[currentPinIndex].lon);
-	flyTo(latitude, longitude, 0.2, 10.0);	
+	flyTo(latitude, longitude, 0.2, 10.0, true);	
 	showLastNextButtons();
 
 }

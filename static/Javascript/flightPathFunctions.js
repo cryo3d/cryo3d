@@ -48,15 +48,15 @@ function plotTour(points, tour){
 /* Can use this to create pin instead of rewriting all the Cesium code*/
 function createPin(tour, pinName, longitude, latitude, color){
 	var pinBuilder = new Cesium.PinBuilder();
-		var pin = viewer.entities.add({
-			tourName : tour,
-		  	name : pinName,
-		  	position : Cesium.Cartesian3.fromDegrees(longitude, latitude),
-		  	lat: latitude,
-		  	lon: longitude,
-		  	billboard : {
-		    image : pinBuilder.fromColor(color, 36).toDataURL(),
-		    verticalOrigin : Cesium.VerticalOrigin.BOTTOM
+	var pin = viewer.entities.add({
+		tourName : tour,
+	  	name : pinName,
+	  	position : Cesium.Cartesian3.fromDegrees(longitude, latitude),
+	  	lat: latitude,
+	  	lon: longitude,
+	  	billboard : {
+	  	  image : pinBuilder.fromColor(color, 36).toDataURL(),
+	  	  verticalOrigin : Cesium.VerticalOrigin.BOTTOM
 	  	} 	
 	});
 	return pin;	
@@ -64,6 +64,8 @@ function createPin(tour, pinName, longitude, latitude, color){
 
 /* Can use this to fly to a waypoint instead of rewriting all the Cesium code*/
 function flyTo(latitude, longitude, zoom, time){
+	viewer.selectedEntity = null; // deselects any entity while we are flying
+
 	var west = longitude - zoom;
 	var south = latitude - 2*zoom;
 	var east = longitude + zoom;
@@ -71,7 +73,6 @@ function flyTo(latitude, longitude, zoom, time){
 	var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
 	
 	var boxSouth = latitude - 0.5*zoom;
-	var outlineRectangle = Cesium.Rectangle.fromDegrees(west, boxSouth, east, north);
 
 	var fly = viewer.camera.flyTo({
     	destination : rectangle,
@@ -83,6 +84,7 @@ function flyTo(latitude, longitude, zoom, time){
         }
 	});	
 
+	var outlineRectangle = Cesium.Rectangle.fromDegrees(west, boxSouth, east, north);
 	viewer.entities.add({
     	rectangle : {
 	        coordinates : outlineRectangle,
@@ -90,7 +92,55 @@ function flyTo(latitude, longitude, zoom, time){
 	        outline : true,
 	        outlineColor : Cesium.Color.RED
     	}
-	});
+	});	
+	/* allows us to keep track of the rectangles
+	we've drawn so we can delete them later	*/
+	allEntities.push(outlineRectangle);
+}
+
+
+function distanceBetweenPins(pin1, pin2) {
+    return Math.sqrt(Math.pow((pin1.lat - pin2.lat), 2) + Math.pow((pin1.lon - pin2.lon), 2));
+}
+
+function flyToNextPin(pin1, pin2, zoom, groundSpeed){
+	var distance = parseFloat(distanceBetweenPins(pin1, pin2));
+	var flightTime = distance / groundSpeed;
+
+	viewer.selectedEntity = null; // deselects any entity while we are flying
+
+	var latitude = parseFloat(pin2.lat);
+	var longitude = parseFloat(pin2.lon);
+	var west = longitude - zoom;
+	var south = latitude - 2*zoom;
+	var east = longitude + zoom;
+	var north = latitude + .5*zoom;
+	var rectangle = Cesium.Rectangle.fromDegrees(west, south, east, north);
+	
+	var boxSouth = latitude - 0.5*zoom;
+
+	var fly = viewer.camera.flyTo({
+    	destination : rectangle,
+    	duration : flightTime,
+    	orientation : {
+            heading : Cesium.Math.toRadians(-5.0),
+            pitch : Cesium.Math.toRadians(-65.0),
+            roll : 0.0
+        }
+	});	
+
+	var outlineRectangle = Cesium.Rectangle.fromDegrees(west, boxSouth, east, north);
+	viewer.entities.add({
+    	rectangle : {
+	        coordinates : outlineRectangle,
+	        fill : false,
+	        outline : true,
+	        outlineColor : Cesium.Color.RED
+    	}
+	});	
+	/* allows us to keep track of the rectangles
+	we've drawn so we can delete them later	*/
+	allEntities.push(outlineRectangle);
 }
 
 /* Deletes all waypoints/flight paths from the map */
