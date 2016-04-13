@@ -5,6 +5,7 @@ function initViewer(){
     var viewer = new Cesium.Viewer('cesiumContainer', {
     animation : false,
     timeline : false,
+    vrButton: true
     });
 
     return viewer;
