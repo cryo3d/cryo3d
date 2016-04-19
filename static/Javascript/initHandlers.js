@@ -5,4 +5,4 @@ pinClickedHandler.setInputAction(function(click) {
     if (Cesium.defined(pickedObject) && Cesium.defined(pickedObject.id.tourName)) {
         updateCurrentPinIndex(pickedObject.id.lat, pickedObject.id.lon);
     }
-}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+}, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
