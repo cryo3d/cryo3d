@@ -3,15 +3,16 @@ function initViewer(){
     Cesium.Camera.DEFAULT_VIEW_RECTANGLE = extent;
     Cesium.Camera.DEFAULT_VIEW_FACTOR = 0;
     var viewer = new Cesium.Viewer('cesiumContainer', {
-    	animation : false,
-    	timeline : false,
-	});
- 
+    animation : false,
+    timeline : false,
+    vrButton: true
+    });
+
     return viewer;
 }
  
 var viewer = initViewer();
+var scene = viewer.scene;
 
 /* Allows us to run our own custom scripts */
 viewer.infoBox.frame.removeAttribute('sandbox');	
-
