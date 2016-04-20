@@ -76,7 +76,7 @@ function initLayers() {
     viewer.scene.terrainProvider = terrainProvider;
 
     // Add lighting effects
-    //viewer.scene.globe.enableLighting = true;
+    viewer.scene.globe.enableLighting = true;
 
 }
 
