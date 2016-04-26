@@ -25,18 +25,13 @@ function addLayerToggleOption(label, layerName, minValue, maxValue, stepValue, d
 
 }
 
-addLayerToggleOption("Terra Sea Ice", "terraSeaIce", 0.0, 1.0, 0.1, 1.0);
-addLayerToggleOption("Aqua Sea Ice", "aquaSeaIce", 0.0, 1.0, 0.1, 1.0);
-addLayerToggleOption("Terra Snow Cover", "terraSnowCover", 0.0, 1.0, 0.1, 1.0);
-addLayerToggleOption("Aqua Snow Cover", "aquaSnowCover", 0.0, 1.0, 0.1, 1.0);
+addLayerToggleOption("Sea Ice", "aquaSeaIce", 0.0, 1.0, 0.1, 1.0);
+addLayerToggleOption("Snow Cover", "terraSnowCover", 0.0, 1.0, 0.1, 1.0);
 addLayerToggleOption("Soil Temperature", "soilTemperature", 0.0, 1.0, 0.1, 1.0);
 addLayerToggleOption("Soil Moisture", "soilMoisture", 0.0, 1.0, 0.1, 0.5);
 addLayerToggleOption("Coastlines", "coastlines", 0.0, 1.0, 0.1, 1.0);
-
-var terraSeaIceSlider = document.getElementById("terraSeaIce");
-terraSeaIceSlider.onmouseup = function() {
-	updateLayerAlpha(terraSeaIce, terraSeaIceSlider.value);
-};
+addLayerToggleOption("Earth at Night", "night", 0.0, 1.0, 0.1, 0.0);
+addLayerToggleOption("Satellite Imagery", "correctedReflectance", 0.0, 1.0, 0.1, 0.0);
 
 var aquaSeaIceSlider = document.getElementById("aquaSeaIce");
 aquaSeaIceSlider.onmouseup = function() {
@@ -46,11 +41,6 @@ aquaSeaIceSlider.onmouseup = function() {
 var terraSnowCoverSlider = document.getElementById("terraSnowCover");
 terraSnowCoverSlider.onmouseup = function() {
 	updateLayerAlpha(terraSnowCover, terraSnowCoverSlider.value);
-};
-
-var aquaSnowCoverSlider = document.getElementById("aquaSnowCover");
-aquaSnowCoverSlider.onmouseup = function() {
-	updateLayerAlpha(aquaSnowCover, aquaSnowCoverSlider.value);
 };
 
 var soilTemperatureSlider = document.getElementById("soilTemperature");
@@ -66,6 +56,16 @@ soilMoistureSlider.onmouseup = function() {
 var coastlinesSlider = document.getElementById("coastlines");
 coastlinesSlider.onmouseup = function() {
 	updateLayerAlpha(coastlines, coastlinesSlider.value);
+};
+
+var nightSlider = document.getElementById("night");
+nightSlider.onmouseup = function() {
+	updateLayerAlpha(night, nightSlider.value);
+};
+
+var correctedReflectanceSlider = document.getElementById("correctedReflectance");
+correctedReflectanceSlider.onmouseup = function() {
+	updateLayerAlpha(correctedReflectance, correctedReflectanceSlider.value);
 };
 
 var e3 = document.getElementById('layerPicker');
