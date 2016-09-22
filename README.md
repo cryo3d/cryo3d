@@ -3,7 +3,7 @@
 - Michelle Bray 		michelle.bray@colorado.edu
 - Ali Hakimi			ali.hakimi@colorado.edu
 - Annie Kelly			annie.kelly@colorado.edu
-- Chris Gray			chris.gray@colorado.edu
+- Chris Gray			christopher.a.gray@colorado.edu
 - Lincoln Samelson		lincoln.samelson@colorado.edu
 - Olivia Abrant			olivia.abrant@colorado.edu
 
